@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="sv" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Presentkort Inlösen — Wireframe</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+          colors: {
+            wire: {
+              bg: '#f5f5f5',
+              surface: '#ffffff',
+              border: '#d4d4d4',
+              text: '#404040',
+              muted: '#737373',
+              accent: '#a3a3a3',
+              placeholder: '#e5e5e5',
+              success: '#16a34a',
+              successBg: '#f0fdf4',
+              successBorder: '#bbf7d0',
+              error: '#dc2626',
+              errorBg: '#fef2f2',
+              errorBorder: '#fecaca',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: 'Inter', system-ui, sans-serif; margin: 0; }
+    .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+
+    /* Scenario tabs */
+    .scenario-tab { cursor: pointer; transition: all 0.15s; }
+    .scenario-tab.active { background: #404040; color: #fff; border-color: #404040; }
+
+    /* Gift card code input dashes */
+    .code-input { letter-spacing: 0.15em; }
+
+    /* Applied gift card pill */
+    .gc-pill { animation: slideIn 0.2s ease-out; }
+    @keyframes slideIn { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
+  </style>
+</head>
+<body class="bg-wire-bg text-wire-text">
+
+  <!-- ==================== WIREFRAME HEADER ==================== -->
+  <div class="bg-yellow-50 border-b border-yellow-200 px-4 py-2 text-center text-sm text-yellow-800">
+    <strong>WIREFRAME</strong> — Presentkort Inlösen (Flöde 2: Checkout-integration) — Gråskala, ej slutgiltig design
+  </div>
+
+  <!-- ==================== SCENARIO SELECTOR ==================== -->
+  <div class="max-w-lg mx-auto px-4 pt-6 pb-3">
+    <p class="text-xs text-wire-muted uppercase tracking-wide mb-2">Visa scenario</p>
+    <div class="flex gap-2 flex-wrap">
+      <button class="scenario-tab active border-2 border-wire-border rounded-lg px-3 py-1.5 text-sm font-medium" onclick="showScenario('full')">Saldo täcker allt</button>
+      <button class="scenario-tab border-2 border-wire-border rounded-lg px-3 py-1.5 text-sm font-medium" onclick="showScenario('partial')">Delbetala</button>
+      <button class="scenario-tab border-2 border-wire-border rounded-lg px-3 py-1.5 text-sm font-medium" onclick="showScenario('multi')">Flera kort</button>
+      <button class="scenario-tab border-2 border-wire-border rounded-lg px-3 py-1.5 text-sm font-medium" onclick="showScenario('invalid')">Ogiltig kod</button>
+      <button class="scenario-tab border-2 border-wire-border rounded-lg px-3 py-1.5 text-sm font-medium" onclick="showScenario('discount')">Rabattkort</button>
+    </div>
+  </div>
+
+  <div class="max-w-lg mx-auto px-4 py-4">
+
+    <!-- ================================================================ -->
+    <!--  CONTEXT: Simulerad meny-header (för att visa var vi befinner oss) -->
+    <!-- ================================================================ -->
+    <div class="bg-wire-surface border border-wire-border rounded-xl p-4 mb-3 flex items-center gap-3">
+      <div class="w-10 h-10 bg-wire-placeholder border border-dashed border-wire-border rounded-lg flex items-center justify-center flex-shrink-0">
+        <span class="text-wire-muted text-[9px]">Logo</span>
+      </div>
+      <div>
+        <p class="font-semibold text-sm">[Restaurangnamn]</p>
+        <p class="text-xs text-wire-muted">Online-meny — Take Away</p>
+      </div>
+    </div>
+
+    <!-- ================================================================ -->
+    <!--  VARUKORG (förenklad — visar kontext)                            -->
+    <!-- ================================================================ -->
+    <div class="bg-wire-surface border border-wire-border rounded-xl mb-3 overflow-hidden">
+      <div class="px-5 py-3 border-b border-wire-border flex items-center justify-between">
+        <h2 class="font-semibold flex items-center gap-2">
+          <span class="material-symbols-outlined" style="font-size: 20px">shopping_cart</span>
+          Din beställning
+        </h2>
+        <span class="text-sm text-wire-muted">3 artiklar</span>
+      </div>
+
+      <!-- Cart items -->
+      <div class="divide-y divide-wire-border">
+        <div class="px-5 py-3 flex justify-between items-center">
+          <div class="flex items-center gap-3">
+            <span class="w-6 h-6 bg-wire-placeholder rounded text-xs flex items-center justify-center font-medium">2</span>
+            <span class="text-sm">Cheese Burger</span>
+          </div>
+          <span class="text-sm font-medium">258 kr</span>
+        </div>
+        <div class="px-5 py-3 flex justify-between items-center">
+          <div class="flex items-center gap-3">
+            <span class="w-6 h-6 bg-wire-placeholder rounded text-xs flex items-center justify-center font-medium">1</span>
+            <span class="text-sm">Loaded Fries</span>
+          </div>
+          <span class="text-sm font-medium">89 kr</span>
+        </div>
+        <div class="px-5 py-3 flex justify-between items-center">
+          <div class="flex items-center gap-3">
+            <span class="w-6 h-6 bg-wire-placeholder rounded text-xs flex items-center justify-center font-medium">2</span>
+            <span class="text-sm">Coca-Cola</span>
+          </div>
+          <span class="text-sm font-medium">58 kr</span>
+        </div>
+      </div>
+
+      <!-- Subtotal -->
+      <div class="px-5 py-3 border-t border-wire-border flex justify-between font-semibold">
+        <span>Summa</span>
+        <span id="subtotal">405 kr</span>
+      </div>
+    </div>
+
+    <!-- ================================================================ -->
+    <!--  PRESENTKORT — EXPANDERBART AVSNITT I CHECKOUT                   -->
+    <!-- ================================================================ -->
+    <div class="bg-wire-surface border border-wire-border rounded-xl mb-3 overflow-hidden" id="giftCardSection">
+
+      <!-- Toggle header -->
+      <button class="w-full px-5 py-3.5 flex items-center justify-between hover:bg-gray-50 transition" onclick="toggleGiftCard()">
+        <div class="flex items-center gap-2.5">
+          <span class="material-symbols-outlined text-wire-muted" style="font-size: 20px">card_giftcard</span>
+          <span class="font-medium text-sm">Har du ett presentkort?</span>
+        </div>
+        <span class="material-symbols-outlined text-wire-muted transition-transform" id="gcChevron" style="font-size: 20px">expand_more</span>
+      </button>
+
+      <!-- Expandable content -->
+      <div id="gcContent" class="hidden">
+        <div class="px-5 pb-4 pt-1">
+
+          <!-- Code input -->
+          <div class="flex gap-2 mb-3">
+            <div class="flex-1 relative">
+              <input type="text" placeholder="T.ex. ABCD-1234-EFGH"
+                class="code-input w-full border-2 border-wire-border rounded-lg px-3 py-2.5 text-sm font-mono outline-none focus:border-wire-text uppercase"
+                id="gcCodeInput" maxlength="14">
+            </div>
+            <button class="bg-wire-text text-white px-4 py-2.5 rounded-lg text-sm font-medium hover:bg-neutral-700 transition flex-shrink-0"
+              onclick="applyGiftCard()">
+              Använd
+            </button>
+          </div>
+
+          <!-- ============ SCENARIO: Valid card — full coverage ============ -->
+          <div id="state-valid" class="hidden">
+            <div class="bg-wire-successBg border border-wire-successBorder rounded-lg p-3 mb-3">
+              <div class="flex items-start gap-2.5">
+                <span class="material-symbols-outlined text-wire-success" style="font-size: 20px">check_circle</span>
+                <div class="flex-1 text-sm">
+                  <p class="font-medium text-wire-success">Presentkort tillagt!</p>
+                  <div class="mt-2 space-y-1 text-wire-text">
+                    <div class="flex justify-between">
+                      <span class="text-wire-muted">Saldo på kortet</span>
+                      <span class="font-medium" id="validBalance">500 kr</span>
+                    </div>
+                    <div class="flex justify-between">
+                      <span class="text-wire-muted">Dras från kortet</span>
+                      <span class="font-medium" id="validDeducted">−405 kr</span>
+                    </div>
+                    <div class="flex justify-between pt-1 border-t border-wire-successBorder">
+                      <span class="text-wire-muted">Kvar efter köp</span>
+                      <span class="font-semibold" id="validRemaining">95 kr</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Applied card pill -->
+            <div class="gc-pill flex items-center justify-between bg-wire-placeholder rounded-lg px-3 py-2">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-wire-muted" style="font-size: 18px">card_giftcard</span>
+                <span class="text-sm font-mono font-medium">ABCD-1234-EFGH</span>
+              </div>
+              <button class="text-wire-muted hover:text-wire-error transition" onclick="removeGiftCard(0)">
+                <span class="material-symbols-outlined" style="font-size: 18px">close</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- ============ SCENARIO: Partial — not enough balance ============ -->
+          <div id="state-partial" class="hidden">
+            <div class="bg-wire-successBg border border-wire-successBorder rounded-lg p-3 mb-3">
+              <div class="flex items-start gap-2.5">
+                <span class="material-symbols-outlined text-wire-success" style="font-size: 20px">check_circle</span>
+                <div class="flex-1 text-sm">
+                  <p class="font-medium text-wire-success">Presentkort tillagt!</p>
+                  <div class="mt-2 space-y-1 text-wire-text">
+                    <div class="flex justify-between">
+                      <span class="text-wire-muted">Saldo på kortet</span>
+                      <span class="font-medium">200 kr</span>
+                    </div>
+                    <div class="flex justify-between">
+                      <span class="text-wire-muted">Dras från kortet</span>
+                      <span class="font-medium">−200 kr</span>
+                    </div>
+                    <div class="flex justify-between pt-1 border-t border-wire-successBorder">
+                      <span class="text-wire-muted">Kvar efter köp</span>
+                      <span class="font-semibold">0 kr</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Info: remaining to pay -->
+            <div class="bg-amber-50 border border-amber-200 rounded-lg p-3 mb-3 flex items-start gap-2.5">
+              <span class="material-symbols-outlined text-amber-600" style="font-size: 20px">info</span>
+              <p class="text-sm text-amber-800">
+                Presentkortet täcker <strong>200 kr</strong> av din beställning.
+                Resterande <strong>205 kr</strong> betalas med annan betalningsmetod.
+              </p>
+            </div>
+
+            <div class="gc-pill flex items-center justify-between bg-wire-placeholder rounded-lg px-3 py-2">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-wire-muted" style="font-size: 18px">card_giftcard</span>
+                <span class="text-sm font-mono font-medium">XYZW-5678-QRST</span>
+                <span class="text-xs text-wire-muted">−200 kr</span>
+              </div>
+              <button class="text-wire-muted hover:text-wire-error transition" onclick="removeGiftCard(0)">
+                <span class="material-symbols-outlined" style="font-size: 18px">close</span>
+              </button>
+            </div>
+
+            <!-- Add another card link -->
+            <button class="mt-2 text-sm text-wire-muted hover:text-wire-text flex items-center gap-1 transition">
+              <span class="material-symbols-outlined" style="font-size: 16px">add</span>
+              Lägg till ett till presentkort
+            </button>
+          </div>
+
+          <!-- ============ SCENARIO: Multiple cards stacked ============ -->
+          <div id="state-multi" class="hidden">
+            <div class="bg-wire-successBg border border-wire-successBorder rounded-lg p-3 mb-3">
+              <div class="flex items-start gap-2.5">
+                <span class="material-symbols-outlined text-wire-success" style="font-size: 20px">check_circle</span>
+                <div class="flex-1 text-sm">
+                  <p class="font-medium text-wire-success">2 presentkort tillagda — täcker hela beställningen!</p>
+                  <div class="mt-2 space-y-1 text-wire-text">
+                    <div class="flex justify-between">
+                      <span class="text-wire-muted">Totalt saldo</span>
+                      <span class="font-medium">200 + 300 = 500 kr</span>
+                    </div>
+                    <div class="flex justify-between">
+                      <span class="text-wire-muted">Dras totalt</span>
+                      <span class="font-medium">−405 kr</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 1 -->
+            <div class="gc-pill flex items-center justify-between bg-wire-placeholder rounded-lg px-3 py-2 mb-2">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-wire-muted" style="font-size: 18px">card_giftcard</span>
+                <span class="text-sm font-mono font-medium">XYZW-5678-QRST</span>
+                <span class="text-xs text-wire-muted">−200 kr (tömt)</span>
+              </div>
+              <button class="text-wire-muted hover:text-wire-error transition">
+                <span class="material-symbols-outlined" style="font-size: 18px">close</span>
+              </button>
+            </div>
+            <!-- Card 2 -->
+            <div class="gc-pill flex items-center justify-between bg-wire-placeholder rounded-lg px-3 py-2">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-wire-muted" style="font-size: 18px">card_giftcard</span>
+                <span class="text-sm font-mono font-medium">MNOP-9012-UVWX</span>
+                <span class="text-xs text-wire-muted">−205 kr (95 kr kvar)</span>
+              </div>
+              <button class="text-wire-muted hover:text-wire-error transition">
+                <span class="material-symbols-outlined" style="font-size: 18px">close</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- ============ SCENARIO: Invalid code ============ -->
+          <div id="state-invalid" class="hidden">
+            <div class="bg-wire-errorBg border border-wire-errorBorder rounded-lg p-3">
+              <div class="flex items-start gap-2.5">
+                <span class="material-symbols-outlined text-wire-error" style="font-size: 20px">error</span>
+                <div class="text-sm">
+                  <p class="font-medium text-wire-error" id="errorMessage">Ogiltig presentkortskod</p>
+                  <p class="text-wire-muted mt-0.5" id="errorDetail">Kontrollera koden och försök igen.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Alternative error states (toggle via sub-buttons) -->
+            <div class="mt-3 flex gap-2 flex-wrap">
+              <button class="text-xs border border-wire-border rounded px-2 py-1 hover:bg-wire-placeholder" onclick="showError('invalid')">Ogiltig kod</button>
+              <button class="text-xs border border-wire-border rounded px-2 py-1 hover:bg-wire-placeholder" onclick="showError('expired')">Utgånget</button>
+              <button class="text-xs border border-wire-border rounded px-2 py-1 hover:bg-wire-placeholder" onclick="showError('empty')">Förbrukat</button>
+              <button class="text-xs border border-wire-border rounded px-2 py-1 hover:bg-wire-placeholder" onclick="showError('wrong-merchant')">Fel företag</button>
+            </div>
+          </div>
+
+          <!-- ============ SCENARIO: Discount card (%) ============ -->
+          <div id="state-discount" class="hidden">
+            <div class="bg-wire-successBg border border-wire-successBorder rounded-lg p-3 mb-3">
+              <div class="flex items-start gap-2.5">
+                <span class="material-symbols-outlined text-wire-success" style="font-size: 20px">percent</span>
+                <div class="flex-1 text-sm">
+                  <p class="font-medium text-wire-success">Rabattkort tillagt!</p>
+                  <div class="mt-2 space-y-1 text-wire-text">
+                    <div class="flex justify-between">
+                      <span class="text-wire-muted">Rabatt</span>
+                      <span class="font-medium">10%</span>
+                    </div>
+                    <div class="flex justify-between">
+                      <span class="text-wire-muted">Du sparar</span>
+                      <span class="font-medium text-wire-success">−40,50 kr</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="gc-pill flex items-center justify-between bg-wire-placeholder rounded-lg px-3 py-2">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-wire-muted" style="font-size: 18px">percent</span>
+                <span class="text-sm font-mono font-medium">DISC-10PR-CENT</span>
+                <span class="text-xs bg-wire-border rounded px-1.5 py-0.5">−10%</span>
+              </div>
+              <button class="text-wire-muted hover:text-wire-error transition">
+                <span class="material-symbols-outlined" style="font-size: 18px">close</span>
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- ================================================================ -->
+    <!--  BETALNINGSSAMMANFATTNING                                        -->
+    <!-- ================================================================ -->
+    <div class="bg-wire-surface border border-wire-border rounded-xl mb-3 overflow-hidden" id="paymentSummary">
+      <div class="px-5 py-4">
+        <h3 class="text-sm font-semibold mb-3">Att betala</h3>
+
+        <div class="space-y-2 text-sm" id="summaryLines">
+          <div class="flex justify-between">
+            <span class="text-wire-muted">Beställning</span>
+            <span>405 kr</span>
+          </div>
+
+          <!-- Gift card deduction (shown when applied) -->
+          <div class="flex justify-between text-wire-success hidden" id="summaryGcLine">
+            <span class="flex items-center gap-1">
+              <span class="material-symbols-outlined" style="font-size: 16px">card_giftcard</span>
+              Presentkort
+            </span>
+            <span id="summaryGcAmount">−405 kr</span>
+          </div>
+
+          <!-- Discount deduction -->
+          <div class="flex justify-between text-wire-success hidden" id="summaryDiscountLine">
+            <span class="flex items-center gap-1">
+              <span class="material-symbols-outlined" style="font-size: 16px">percent</span>
+              Rabatt (10%)
+            </span>
+            <span>−40,50 kr</span>
+          </div>
+
+          <div class="border-t border-wire-border pt-2 mt-2">
+            <div class="flex justify-between font-semibold text-base">
+              <span>Totalt</span>
+              <span id="summaryTotal">405 kr</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================================================================ -->
+    <!--  BETALNINGSMETOD (visas/döljs beroende på scenario)              -->
+    <!-- ================================================================ -->
+    <div class="bg-wire-surface border border-wire-border rounded-xl mb-4 overflow-hidden" id="paymentMethod">
+      <div class="px-5 py-4">
+        <h3 class="text-sm font-semibold mb-3" id="paymentTitle">Betalningsmetod</h3>
+        <div class="border-2 border-dashed border-wire-border rounded-lg p-6 text-center" id="paymentPlaceholder">
+          <span class="material-symbols-outlined text-wire-accent mb-1" style="font-size: 32px">credit_card</span>
+          <p class="text-sm text-wire-muted">Swish / Kort / Klarna</p>
+        </div>
+
+        <!-- When fully covered by gift card -->
+        <div class="text-center py-4 hidden" id="paymentCovered">
+          <span class="material-symbols-outlined text-wire-success mb-1" style="font-size: 32px">check_circle</span>
+          <p class="text-sm font-medium text-wire-success">Hela beställningen täcks av presentkort</p>
+          <p class="text-xs text-wire-muted mt-1">Ingen ytterligare betalning behövs</p>
+        </div>
+
+        <!-- When partially covered -->
+        <div class="hidden" id="paymentPartial">
+          <div class="bg-wire-placeholder rounded-lg px-3 py-2 mb-3 text-sm flex justify-between">
+            <span class="text-wire-muted">Kvar att betala</span>
+            <span class="font-semibold" id="remainingAmount">205 kr</span>
+          </div>
+          <div class="border-2 border-dashed border-wire-border rounded-lg p-6 text-center">
+            <span class="material-symbols-outlined text-wire-accent mb-1" style="font-size: 32px">credit_card</span>
+            <p class="text-sm text-wire-muted">Betala resterande 205 kr</p>
+            <p class="text-xs text-wire-accent mt-1">Swish / Kort / Klarna</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================================================================ -->
+    <!--  BEKRÄFTA BESTÄLLNING                                            -->
+    <!-- ================================================================ -->
+    <button class="w-full bg-wire-text text-white font-semibold py-3.5 rounded-xl hover:bg-neutral-700 transition mb-4" onclick="showOrderConfirmation()">
+      <span id="confirmBtnText">Bekräfta beställning — 405 kr</span>
+    </button>
+
+    <!-- ================================================================ -->
+    <!--  ORDERBEKRÄFTELSE (visas efter klick)                            -->
+    <!-- ================================================================ -->
+    <div id="orderConfirmation" class="hidden">
+      <div class="fixed inset-0 bg-black/30 z-40" onclick="hideOrderConfirmation()"></div>
+      <div class="fixed bottom-0 left-0 right-0 bg-white rounded-t-2xl z-50 max-w-lg mx-auto shadow-xl" style="max-height: 85vh; overflow-y: auto;">
+        <div class="p-6">
+          <!-- Handle -->
+          <div class="w-10 h-1 bg-wire-border rounded-full mx-auto mb-5"></div>
+
+          <div class="text-center mb-5">
+            <div class="w-14 h-14 bg-wire-successBg rounded-full mx-auto mb-3 flex items-center justify-center">
+              <span class="material-symbols-outlined text-wire-success" style="font-size: 28px">check_circle</span>
+            </div>
+            <h2 class="text-lg font-bold">Beställning mottagen!</h2>
+            <p class="text-sm text-wire-muted mt-1">Ordernummer: <span class="font-mono">#ORD-20260410-042</span></p>
+          </div>
+
+          <!-- Payment breakdown -->
+          <div class="bg-wire-bg rounded-xl p-4 mb-4">
+            <h3 class="text-sm font-semibold mb-2">Betalning</h3>
+            <div class="space-y-1.5 text-sm">
+              <div class="flex justify-between">
+                <span class="text-wire-muted">Beställning</span>
+                <span>405 kr</span>
+              </div>
+              <div class="flex justify-between text-wire-success" id="confirmGcLine">
+                <span>Presentkort (ABCD-...EFGH)</span>
+                <span>−405 kr</span>
+              </div>
+              <div class="flex justify-between font-semibold pt-1.5 border-t border-wire-border">
+                <span>Betalt</span>
+                <span id="confirmTotal">0 kr</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Gift card balance after -->
+          <div class="bg-wire-bg rounded-xl p-4 mb-4" id="confirmBalanceSection">
+            <div class="flex items-center gap-2 mb-1">
+              <span class="material-symbols-outlined text-wire-muted" style="font-size: 18px">card_giftcard</span>
+              <h3 class="text-sm font-semibold">Presentkortssaldo efter köp</h3>
+            </div>
+            <div class="flex justify-between text-sm mt-2">
+              <span class="font-mono text-wire-muted">ABCD-1234-EFGH</span>
+              <span class="font-semibold" id="confirmRemaining">95 kr kvar</span>
+            </div>
+          </div>
+
+          <button class="w-full border-2 border-wire-border font-semibold py-3 rounded-xl hover:bg-wire-placeholder transition" onclick="hideOrderConfirmation()">
+            Stäng
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ==================== JAVASCRIPT ==================== -->
+  <script>
+    let gcExpanded = false;
+
+    function toggleGiftCard() {
+      gcExpanded = !gcExpanded;
+      document.getElementById('gcContent').classList.toggle('hidden', !gcExpanded);
+      document.getElementById('gcChevron').style.transform = gcExpanded ? 'rotate(180deg)' : '';
+    }
+
+    function showScenario(type) {
+      // Update tabs
+      document.querySelectorAll('.scenario-tab').forEach(t => t.classList.remove('active'));
+      event.target.classList.add('active');
+
+      // Expand gift card section
+      gcExpanded = true;
+      document.getElementById('gcContent').classList.remove('hidden');
+      document.getElementById('gcChevron').style.transform = 'rotate(180deg)';
+
+      // Hide all states
+      document.querySelectorAll('[id^="state-"]').forEach(s => s.classList.add('hidden'));
+
+      // Reset payment display
+      document.getElementById('paymentPlaceholder').classList.remove('hidden');
+      document.getElementById('paymentCovered').classList.add('hidden');
+      document.getElementById('paymentPartial').classList.add('hidden');
+      document.getElementById('summaryGcLine').classList.add('hidden');
+      document.getElementById('summaryDiscountLine').classList.add('hidden');
+      document.getElementById('paymentTitle').textContent = 'Betalningsmetod';
+
+      switch (type) {
+        case 'full':
+          document.getElementById('state-valid').classList.remove('hidden');
+          document.getElementById('paymentPlaceholder').classList.add('hidden');
+          document.getElementById('paymentCovered').classList.remove('hidden');
+          document.getElementById('summaryGcLine').classList.remove('hidden');
+          document.getElementById('summaryGcAmount').textContent = '−405 kr';
+          document.getElementById('summaryTotal').textContent = '0 kr';
+          document.getElementById('confirmBtnText').textContent = 'Bekräfta beställning — 0 kr';
+          break;
+
+        case 'partial':
+          document.getElementById('state-partial').classList.remove('hidden');
+          document.getElementById('paymentPlaceholder').classList.add('hidden');
+          document.getElementById('paymentPartial').classList.remove('hidden');
+          document.getElementById('summaryGcLine').classList.remove('hidden');
+          document.getElementById('summaryGcAmount').textContent = '−200 kr';
+          document.getElementById('summaryTotal').textContent = '205 kr';
+          document.getElementById('paymentTitle').textContent = 'Betala resterande';
+          document.getElementById('confirmBtnText').textContent = 'Bekräfta beställning — 205 kr';
+          break;
+
+        case 'multi':
+          document.getElementById('state-multi').classList.remove('hidden');
+          document.getElementById('paymentPlaceholder').classList.add('hidden');
+          document.getElementById('paymentCovered').classList.remove('hidden');
+          document.getElementById('summaryGcLine').classList.remove('hidden');
+          document.getElementById('summaryGcAmount').textContent = '−405 kr';
+          document.getElementById('summaryTotal').textContent = '0 kr';
+          document.getElementById('confirmBtnText').textContent = 'Bekräfta beställning — 0 kr';
+          break;
+
+        case 'invalid':
+          document.getElementById('state-invalid').classList.remove('hidden');
+          document.getElementById('summaryTotal').textContent = '405 kr';
+          document.getElementById('confirmBtnText').textContent = 'Bekräfta beställning — 405 kr';
+          showError('invalid');
+          break;
+
+        case 'discount':
+          document.getElementById('state-discount').classList.remove('hidden');
+          document.getElementById('summaryDiscountLine').classList.remove('hidden');
+          document.getElementById('summaryTotal').textContent = '364,50 kr';
+          document.getElementById('confirmBtnText').textContent = 'Bekräfta beställning — 364,50 kr';
+          break;
+      }
+    }
+
+    function showError(type) {
+      const msg = document.getElementById('errorMessage');
+      const detail = document.getElementById('errorDetail');
+      switch (type) {
+        case 'invalid':
+          msg.textContent = 'Ogiltig presentkortskod';
+          detail.textContent = 'Kontrollera koden och försök igen.';
+          break;
+        case 'expired':
+          msg.textContent = 'Presentkortet har gått ut';
+          detail.textContent = 'Kortet gick ut 2025-12-31. Kontakta företaget för mer info.';
+          break;
+        case 'empty':
+          msg.textContent = 'Presentkortet är förbrukat';
+          detail.textContent = 'Kortet har 0 kr i saldo.';
+          break;
+        case 'wrong-merchant':
+          msg.textContent = 'Kortet gäller inte här';
+          detail.textContent = 'Det här presentkortet är utfärdat av ett annat företag.';
+          break;
+      }
+    }
+
+    function applyGiftCard() {
+      // Simulate applying — in wireframe, use scenario tabs instead
+      const code = document.getElementById('gcCodeInput').value;
+      if (!code) return;
+      showScenario('full');
+      document.querySelector('.scenario-tab.active')?.classList.remove('active');
+      document.querySelector('.scenario-tab:first-child')?.classList.add('active');
+    }
+
+    function removeGiftCard(index) {
+      // Reset to default state
+      document.querySelectorAll('[id^="state-"]').forEach(s => s.classList.add('hidden'));
+      document.getElementById('paymentPlaceholder').classList.remove('hidden');
+      document.getElementById('paymentCovered').classList.add('hidden');
+      document.getElementById('paymentPartial').classList.add('hidden');
+      document.getElementById('summaryGcLine').classList.add('hidden');
+      document.getElementById('summaryTotal').textContent = '405 kr';
+      document.getElementById('confirmBtnText').textContent = 'Bekräfta beställning — 405 kr';
+    }
+
+    function showOrderConfirmation() {
+      document.getElementById('orderConfirmation').classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function hideOrderConfirmation() {
+      document.getElementById('orderConfirmation').classList.add('hidden');
+      document.body.style.overflow = '';
+    }
+  </script>
+
+</body>
+</html>
