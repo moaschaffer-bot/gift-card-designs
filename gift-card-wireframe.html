@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="sv" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Presentkort Online — Wireframe</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+          colors: {
+            wire: {
+              bg: '#f5f5f5',
+              surface: '#ffffff',
+              border: '#d4d4d4',
+              text: '#404040',
+              muted: '#737373',
+              accent: '#a3a3a3',
+              placeholder: '#e5e5e5',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: 'Inter', system-ui, sans-serif; margin: 0; }
+    .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+
+    /* Step indicator */
+    .step { opacity: 0.4; pointer-events: none; }
+    .step.active { opacity: 1; pointer-events: auto; }
+    .step-dot { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 14px; }
+    .step.active .step-dot { background: #404040; color: #fff; }
+    .step:not(.active) .step-dot { background: #e5e5e5; color: #a3a3a3; }
+    .step.completed .step-dot { background: #404040; color: #fff; }
+    .step.completed { opacity: 1; pointer-events: auto; cursor: pointer; }
+
+    /* Amount buttons */
+    .amount-btn { transition: all 0.15s; }
+    .amount-btn.selected { background: #404040 !important; color: #fff !important; border-color: #404040 !important; }
+
+    /* Delivery option cards */
+    .delivery-card { transition: all 0.15s; cursor: pointer; }
+    .delivery-card.selected { border-color: #404040 !important; background: #fafafa; }
+    .delivery-card.selected .delivery-radio { background: #404040; border-color: #404040; }
+    .delivery-card.selected .delivery-radio::after { content: ''; width: 8px; height: 8px; background: #fff; border-radius: 50%; }
+
+    /* Design theme cards */
+    .theme-card { transition: all 0.15s; cursor: pointer; }
+    .theme-card.selected { border-color: #404040 !important; }
+
+    /* Annotation markers */
+    .annotation {
+      position: absolute;
+      background: #fef3c7;
+      border: 1px solid #f59e0b;
+      border-radius: 4px;
+      padding: 4px 8px;
+      font-size: 11px;
+      color: #92400e;
+      white-space: nowrap;
+      z-index: 10;
+    }
+  </style>
+</head>
+<body class="bg-wire-bg text-wire-text">
+
+  <!-- ==================== WIREFRAME HEADER ==================== -->
+  <div class="bg-yellow-50 border-b border-yellow-200 px-4 py-2 text-center text-sm text-yellow-800">
+    <strong>WIREFRAME</strong> — Presentkort Online (Flöde 1: Köp) — Gråskala, ej slutgiltig design
+  </div>
+
+  <div class="max-w-lg mx-auto px-4 py-6">
+
+    <!-- ==================== BRAND HEADER ==================== -->
+    <header class="text-center mb-8">
+      <!-- Placeholder: Customer logo -->
+      <div class="w-20 h-20 bg-wire-placeholder border-2 border-dashed border-wire-border rounded-xl mx-auto mb-3 flex items-center justify-center">
+        <span class="text-wire-muted text-xs">Logotyp</span>
+      </div>
+      <h1 class="text-xl font-bold text-wire-text">[Företagsnamn]</h1>
+      <p class="text-wire-muted text-sm mt-1">Köp presentkort</p>
+    </header>
+
+    <!-- ==================== STEP INDICATOR ==================== -->
+    <nav class="flex items-center justify-center gap-2 mb-8" id="stepNav">
+      <div class="step active" data-step="1" onclick="goToStep(1)">
+        <div class="flex items-center gap-2">
+          <div class="step-dot">1</div>
+          <span class="text-sm font-medium hidden sm:inline">Belopp</span>
+        </div>
+      </div>
+      <div class="w-8 h-px bg-wire-border"></div>
+      <div class="step" data-step="2" onclick="goToStep(2)">
+        <div class="flex items-center gap-2">
+          <div class="step-dot">2</div>
+          <span class="text-sm font-medium hidden sm:inline">Personifiera</span>
+        </div>
+      </div>
+      <div class="w-8 h-px bg-wire-border"></div>
+      <div class="step" data-step="3" onclick="goToStep(3)">
+        <div class="flex items-center gap-2">
+          <div class="step-dot">3</div>
+          <span class="text-sm font-medium hidden sm:inline">Leverans</span>
+        </div>
+      </div>
+      <div class="w-8 h-px bg-wire-border"></div>
+      <div class="step" data-step="4" onclick="goToStep(4)">
+        <div class="flex items-center gap-2">
+          <div class="step-dot">4</div>
+          <span class="text-sm font-medium hidden sm:inline">Betala</span>
+        </div>
+      </div>
+    </nav>
+
+    <!-- ==================== STEP 1: BELOPP ==================== -->
+    <section id="step1" class="step-content">
+      <div class="bg-wire-surface border border-wire-border rounded-xl p-6 mb-4">
+        <h2 class="text-lg font-semibold mb-1">Välj belopp</h2>
+        <p class="text-sm text-wire-muted mb-5">Välj ett förvalt belopp eller ange ett eget.</p>
+
+        <!-- Fixed denominations -->
+        <div class="grid grid-cols-3 gap-3 mb-5">
+          <button class="amount-btn border-2 border-wire-border rounded-lg py-3 text-center font-semibold hover:border-wire-text" onclick="selectAmount(this, 200)">200 kr</button>
+          <button class="amount-btn border-2 border-wire-border rounded-lg py-3 text-center font-semibold hover:border-wire-text selected" onclick="selectAmount(this, 500)">500 kr</button>
+          <button class="amount-btn border-2 border-wire-border rounded-lg py-3 text-center font-semibold hover:border-wire-text" onclick="selectAmount(this, 1000)">1 000 kr</button>
+        </div>
+
+        <!-- Custom amount -->
+        <div class="relative">
+          <label class="text-sm font-medium text-wire-muted block mb-1.5">Eller ange eget belopp</label>
+          <div class="flex items-center border-2 border-wire-border rounded-lg overflow-hidden focus-within:border-wire-text">
+            <input type="number" placeholder="T.ex. 750" class="flex-1 px-4 py-3 outline-none text-lg" id="customAmount" oninput="selectCustomAmount()">
+            <span class="pr-4 text-wire-muted font-medium">kr</span>
+          </div>
+          <p class="text-xs text-wire-muted mt-1">Min 100 kr — Max 5 000 kr</p>
+        </div>
+      </div>
+
+      <!-- Gift card preview -->
+      <div class="bg-wire-surface border border-wire-border rounded-xl p-5 mb-6 relative overflow-hidden">
+        <p class="text-xs text-wire-muted uppercase tracking-wide mb-3">Forhandsvisning</p>
+        <div class="bg-wire-placeholder rounded-lg p-6 relative" id="previewCard">
+          <div class="flex items-start justify-between">
+            <div>
+              <div class="w-10 h-10 bg-wire-border rounded-lg mb-2"></div>
+              <p class="text-xs text-wire-muted">[Företagsnamn]</p>
+            </div>
+            <div class="text-right">
+              <p class="text-2xl font-bold" id="previewAmount">500 kr</p>
+              <p class="text-xs text-wire-muted">Presentkort</p>
+            </div>
+          </div>
+          <div class="mt-6 pt-4 border-t border-wire-border flex justify-between items-end">
+            <div>
+              <p class="text-xs text-wire-muted" id="previewMessage">Personligt meddelande visas här</p>
+            </div>
+            <div class="w-16 h-16 bg-wire-border rounded flex items-center justify-center">
+              <span class="text-xs text-wire-muted">QR</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button class="w-full bg-wire-text text-white font-semibold py-3.5 rounded-xl hover:bg-neutral-700 transition" onclick="goToStep(2)">
+        Fortsatt
+      </button>
+    </section>
+
+    <!-- ==================== STEP 2: PERSONIFIERA ==================== -->
+    <section id="step2" class="step-content hidden">
+      <div class="bg-wire-surface border border-wire-border rounded-xl p-6 mb-4">
+        <h2 class="text-lg font-semibold mb-1">Personifiera</h2>
+        <p class="text-sm text-wire-muted mb-5">Valfritt — du kan hoppa over detta steg.</p>
+
+        <div class="space-y-4">
+          <div>
+            <label class="text-sm font-medium block mb-1.5">Mottagarens namn</label>
+            <input type="text" placeholder="T.ex. Anna" class="w-full border-2 border-wire-border rounded-lg px-4 py-2.5 outline-none focus:border-wire-text" oninput="updatePreview()">
+          </div>
+          <div>
+            <label class="text-sm font-medium block mb-1.5">Ditt namn (avsandare)</label>
+            <input type="text" placeholder="T.ex. Erik" class="w-full border-2 border-wire-border rounded-lg px-4 py-2.5 outline-none focus:border-wire-text">
+          </div>
+          <div>
+            <label class="text-sm font-medium block mb-1.5">Personligt meddelande</label>
+            <textarea placeholder="T.ex. Grattis pa fodelsedagen!" rows="3" maxlength="200" class="w-full border-2 border-wire-border rounded-lg px-4 py-2.5 outline-none focus:border-wire-text resize-none" oninput="updateMessagePreview(this)"></textarea>
+            <p class="text-xs text-wire-muted text-right mt-1"><span id="charCount">0</span>/200</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Design themes -->
+      <div class="bg-wire-surface border border-wire-border rounded-xl p-6 mb-6">
+        <h3 class="text-sm font-semibold mb-3">Valj design</h3>
+        <div class="grid grid-cols-4 gap-3">
+          <div class="theme-card border-2 border-wire-border rounded-lg p-3 text-center selected" onclick="selectTheme(this)">
+            <div class="w-full aspect-square bg-wire-placeholder rounded mb-1.5 flex items-center justify-center">
+              <span class="material-symbols-outlined text-wire-muted" style="font-size: 28px">card_giftcard</span>
+            </div>
+            <span class="text-xs">Neutral</span>
+          </div>
+          <div class="theme-card border-2 border-wire-border rounded-lg p-3 text-center" onclick="selectTheme(this)">
+            <div class="w-full aspect-square bg-wire-placeholder rounded mb-1.5 flex items-center justify-center">
+              <span class="material-symbols-outlined text-wire-muted" style="font-size: 28px">cake</span>
+            </div>
+            <span class="text-xs">Grattis</span>
+          </div>
+          <div class="theme-card border-2 border-wire-border rounded-lg p-3 text-center" onclick="selectTheme(this)">
+            <div class="w-full aspect-square bg-wire-placeholder rounded mb-1.5 flex items-center justify-center">
+              <span class="material-symbols-outlined text-wire-muted" style="font-size: 28px">favorite</span>
+            </div>
+            <span class="text-xs">Tack</span>
+          </div>
+          <div class="theme-card border-2 border-wire-border rounded-lg p-3 text-center" onclick="selectTheme(this)">
+            <div class="w-full aspect-square bg-wire-placeholder rounded mb-1.5 flex items-center justify-center">
+              <span class="material-symbols-outlined text-wire-muted" style="font-size: 28px">ac_unit</span>
+            </div>
+            <span class="text-xs">Jul</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex gap-3">
+        <button class="flex-1 border-2 border-wire-border font-semibold py-3.5 rounded-xl hover:bg-wire-placeholder transition" onclick="goToStep(1)">Tillbaka</button>
+        <button class="flex-1 bg-wire-text text-white font-semibold py-3.5 rounded-xl hover:bg-neutral-700 transition" onclick="goToStep(3)">Fortsatt</button>
+      </div>
+      <button class="w-full text-sm text-wire-muted mt-3 py-2 hover:text-wire-text transition" onclick="goToStep(3)">Hoppa over personifiering</button>
+    </section>
+
+    <!-- ==================== STEP 3: LEVERANS ==================== -->
+    <section id="step3" class="step-content hidden">
+      <div class="bg-wire-surface border border-wire-border rounded-xl p-6 mb-4">
+        <h2 class="text-lg font-semibold mb-1">Leveransmetod</h2>
+        <p class="text-sm text-wire-muted mb-5">Valj hur presentkortet ska levereras.</p>
+
+        <div class="space-y-3">
+          <!-- Option: Email to recipient -->
+          <div class="delivery-card border-2 border-wire-border rounded-xl p-4 selected" onclick="selectDelivery(this, 'recipient')">
+            <div class="flex items-start gap-3">
+              <div class="delivery-radio w-5 h-5 rounded-full border-2 border-wire-border mt-0.5 flex items-center justify-center flex-shrink-0"></div>
+              <div class="flex-1">
+                <div class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-wire-muted" style="font-size: 20px">forward_to_inbox</span>
+                  <span class="font-medium">Mejla till mottagaren</span>
+                </div>
+                <p class="text-sm text-wire-muted mt-1">Presentkortet skickas direkt till mottagarens e-post.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Conditional fields for "email to recipient" -->
+          <div id="recipientFields" class="pl-8 space-y-3">
+            <div>
+              <label class="text-sm font-medium block mb-1.5">Mottagarens e-post</label>
+              <input type="email" placeholder="anna@example.com" class="w-full border-2 border-wire-border rounded-lg px-4 py-2.5 outline-none focus:border-wire-text">
+            </div>
+            <div>
+              <label class="text-sm font-medium block mb-1.5">Nar ska det skickas?</label>
+              <div class="flex gap-3">
+                <label class="flex items-center gap-2 cursor-pointer">
+                  <input type="radio" name="sendTime" value="now" checked class="accent-neutral-600"> <span class="text-sm">Direkt</span>
+                </label>
+                <label class="flex items-center gap-2 cursor-pointer">
+                  <input type="radio" name="sendTime" value="scheduled" class="accent-neutral-600"> <span class="text-sm">Valj datum</span>
+                </label>
+              </div>
+              <input type="date" class="w-full border-2 border-wire-border rounded-lg px-4 py-2.5 mt-2 outline-none focus:border-wire-text hidden" id="scheduledDate">
+            </div>
+          </div>
+
+          <!-- Option: Email to me -->
+          <div class="delivery-card border-2 border-wire-border rounded-xl p-4" onclick="selectDelivery(this, 'self')">
+            <div class="flex items-start gap-3">
+              <div class="delivery-radio w-5 h-5 rounded-full border-2 border-wire-border mt-0.5 flex items-center justify-center flex-shrink-0"></div>
+              <div class="flex-1">
+                <div class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-wire-muted" style="font-size: 20px">mail</span>
+                  <span class="font-medium">Mejla till mig</span>
+                </div>
+                <p class="text-sm text-wire-muted mt-1">Du far presentkortet och kan vidarebefordra eller skriva ut.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Option: Download PDF -->
+          <div class="delivery-card border-2 border-wire-border rounded-xl p-4" onclick="selectDelivery(this, 'download')">
+            <div class="flex items-start gap-3">
+              <div class="delivery-radio w-5 h-5 rounded-full border-2 border-wire-border mt-0.5 flex items-center justify-center flex-shrink-0"></div>
+              <div class="flex-1">
+                <div class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-wire-muted" style="font-size: 20px">download</span>
+                  <span class="font-medium">Ladda ner PDF</span>
+                </div>
+                <p class="text-sm text-wire-muted mt-1">Ladda ner direkt efter betalning. Skriv ut eller spara.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex gap-3">
+        <button class="flex-1 border-2 border-wire-border font-semibold py-3.5 rounded-xl hover:bg-wire-placeholder transition" onclick="goToStep(2)">Tillbaka</button>
+        <button class="flex-1 bg-wire-text text-white font-semibold py-3.5 rounded-xl hover:bg-neutral-700 transition" onclick="goToStep(4)">Fortsatt</button>
+      </div>
+    </section>
+
+    <!-- ==================== STEP 4: BETALNING ==================== -->
+    <section id="step4" class="step-content hidden">
+      <!-- Order summary -->
+      <div class="bg-wire-surface border border-wire-border rounded-xl p-6 mb-4">
+        <h2 class="text-lg font-semibold mb-4">Sammanfattning</h2>
+
+        <div class="space-y-3 text-sm">
+          <div class="flex justify-between">
+            <span class="text-wire-muted">Presentkort</span>
+            <span class="font-semibold" id="summaryAmount">500 kr</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-wire-muted">Design</span>
+            <span>Neutral</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-wire-muted">Leverans</span>
+            <span>Mejl till mottagaren</span>
+          </div>
+          <div class="border-t border-wire-border my-3"></div>
+          <div class="flex justify-between font-semibold text-base">
+            <span>Att betala</span>
+            <span id="summaryTotal">500 kr</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact details -->
+      <div class="bg-wire-surface border border-wire-border rounded-xl p-6 mb-4">
+        <h3 class="text-sm font-semibold mb-3">Dina uppgifter</h3>
+        <div class="space-y-3">
+          <div>
+            <label class="text-sm font-medium block mb-1.5">E-post (for kvitto)</label>
+            <input type="email" placeholder="din@epost.se" class="w-full border-2 border-wire-border rounded-lg px-4 py-2.5 outline-none focus:border-wire-text">
+          </div>
+          <div>
+            <label class="text-sm font-medium block mb-1.5">Namn</label>
+            <input type="text" placeholder="Ditt namn" class="w-full border-2 border-wire-border rounded-lg px-4 py-2.5 outline-none focus:border-wire-text">
+          </div>
+        </div>
+      </div>
+
+      <!-- Payment method placeholder -->
+      <div class="bg-wire-surface border border-wire-border rounded-xl p-6 mb-4">
+        <h3 class="text-sm font-semibold mb-3">Betalningsmetod</h3>
+        <div class="border-2 border-dashed border-wire-border rounded-lg p-8 text-center">
+          <span class="material-symbols-outlined text-wire-accent mb-2" style="font-size: 36px">credit_card</span>
+          <p class="text-sm text-wire-muted">Betalningsintegration</p>
+          <p class="text-xs text-wire-accent mt-1">Swish / Kort / Klarna — beroende pa foretag</p>
+        </div>
+      </div>
+
+      <!-- Terms -->
+      <label class="flex items-start gap-3 mb-6 cursor-pointer">
+        <input type="checkbox" class="mt-1 accent-neutral-600 w-4 h-4">
+        <span class="text-sm text-wire-muted">Jag godkanner <a href="#" class="underline text-wire-text">kopvillkoren</a>. Presentkortet ar giltigt i 12 manader.</span>
+      </label>
+
+      <div class="flex gap-3">
+        <button class="flex-1 border-2 border-wire-border font-semibold py-3.5 rounded-xl hover:bg-wire-placeholder transition" onclick="goToStep(3)">Tillbaka</button>
+        <button class="flex-1 bg-wire-text text-white font-semibold py-3.5 rounded-xl hover:bg-neutral-700 transition" onclick="showConfirmation()">Betala <span id="payAmount">500 kr</span></button>
+      </div>
+    </section>
+
+    <!-- ==================== STEP 5: BEKRAFTELSE ==================== -->
+    <section id="step5" class="step-content hidden">
+      <div class="text-center mb-6">
+        <div class="w-16 h-16 bg-wire-placeholder rounded-full mx-auto mb-4 flex items-center justify-center">
+          <span class="material-symbols-outlined text-wire-text" style="font-size: 32px">check_circle</span>
+        </div>
+        <h2 class="text-xl font-bold">Tack for ditt kop!</h2>
+        <p class="text-sm text-wire-muted mt-2">Presentkortet har skickats till mottagaren.</p>
+        <p class="text-xs text-wire-muted mt-1">Ordernummer: <span class="font-mono">#GC-20260410-001</span></p>
+      </div>
+
+      <!-- Gift card result -->
+      <div class="bg-wire-surface border border-wire-border rounded-xl p-6 mb-4">
+        <h3 class="text-sm font-semibold mb-3">Ditt presentkort</h3>
+
+        <!-- The card -->
+        <div class="bg-wire-placeholder rounded-lg p-5 mb-4">
+          <div class="flex items-start justify-between">
+            <div>
+              <div class="w-10 h-10 bg-wire-border rounded-lg mb-2"></div>
+              <p class="text-xs text-wire-muted">[Foretagsnamn]</p>
+            </div>
+            <p class="text-2xl font-bold">500 kr</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-wire-border">
+            <p class="text-sm text-wire-muted italic mb-3">"Grattis pa fodelsedagen!"</p>
+            <div class="flex justify-between items-end">
+              <div>
+                <p class="text-xs text-wire-muted">Presentkortskod</p>
+                <p class="font-mono font-bold text-lg tracking-wider">ABCD-1234-EFGH</p>
+              </div>
+              <div class="w-16 h-16 bg-wire-border rounded flex items-center justify-center">
+                <span class="text-xs text-wire-muted">QR</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Copy code -->
+        <button class="w-full border-2 border-wire-border rounded-lg py-2.5 text-sm font-medium flex items-center justify-center gap-2 hover:bg-wire-placeholder transition">
+          <span class="material-symbols-outlined" style="font-size: 18px">content_copy</span>
+          Kopiera kod
+        </button>
+      </div>
+
+      <!-- What happens next -->
+      <div class="bg-wire-surface border border-wire-border rounded-xl p-6 mb-6">
+        <h3 class="text-sm font-semibold mb-3">Vad hander nu?</h3>
+        <div class="space-y-3 text-sm">
+          <div class="flex items-start gap-3">
+            <span class="material-symbols-outlined text-wire-muted" style="font-size: 20px">mail</span>
+            <p class="text-wire-muted">Presentkortet har mejlats till <strong class="text-wire-text">anna@example.com</strong></p>
+          </div>
+          <div class="flex items-start gap-3">
+            <span class="material-symbols-outlined text-wire-muted" style="font-size: 20px">receipt</span>
+            <p class="text-wire-muted">Kvitto skickat till <strong class="text-wire-text">erik@example.com</strong></p>
+          </div>
+          <div class="flex items-start gap-3">
+            <span class="material-symbols-outlined text-wire-muted" style="font-size: 20px">schedule</span>
+            <p class="text-wire-muted">Presentkortet ar giltigt till <strong class="text-wire-text">2027-04-10</strong></p>
+          </div>
+        </div>
+      </div>
+
+      <button class="w-full border-2 border-wire-border font-semibold py-3.5 rounded-xl hover:bg-wire-placeholder transition" onclick="resetFlow()">
+        Kop ett till presentkort
+      </button>
+    </section>
+
+    <!-- ==================== SALDO-KOLL (separat liten sektion) ==================== -->
+    <div class="mt-12 pt-8 border-t border-wire-border">
+      <details class="bg-wire-surface border border-wire-border rounded-xl">
+        <summary class="px-5 py-3 text-sm font-medium cursor-pointer flex items-center gap-2">
+          <span class="material-symbols-outlined" style="font-size: 18px">account_balance_wallet</span>
+          Kontrollera saldo pa ett presentkort
+        </summary>
+        <div class="px-5 pb-4 pt-2">
+          <div class="flex gap-2">
+            <input type="text" placeholder="Ange kod, t.ex. ABCD-1234-EFGH" class="flex-1 border-2 border-wire-border rounded-lg px-3 py-2 text-sm outline-none focus:border-wire-text font-mono">
+            <button class="bg-wire-text text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-neutral-700 transition">Kontrollera</button>
+          </div>
+          <!-- Result (hidden by default, shown on check) -->
+          <div class="mt-3 p-3 bg-wire-placeholder rounded-lg text-sm hidden" id="balanceResult">
+            <div class="flex justify-between">
+              <span class="text-wire-muted">Tillgangligt saldo</span>
+              <span class="font-bold">350 kr</span>
+            </div>
+            <div class="flex justify-between mt-1">
+              <span class="text-wire-muted">Giltigt till</span>
+              <span>2027-04-10</span>
+            </div>
+          </div>
+        </div>
+      </details>
+    </div>
+
+  </div>
+
+  <!-- ==================== JAVASCRIPT ==================== -->
+  <script>
+    let currentStep = 1;
+    let selectedAmount = 500;
+
+    function goToStep(step) {
+      if (step > currentStep + 1) return;
+      currentStep = step;
+
+      // Hide all step contents
+      document.querySelectorAll('.step-content').forEach(s => s.classList.add('hidden'));
+      document.getElementById('step' + step)?.classList.remove('hidden');
+
+      // Update step nav
+      document.querySelectorAll('#stepNav .step').forEach(s => {
+        const n = parseInt(s.dataset.step);
+        s.classList.remove('active', 'completed');
+        if (n === step) s.classList.add('active');
+        else if (n < step) s.classList.add('completed');
+      });
+
+      // Update summary on step 4
+      if (step === 4) updateSummary();
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function selectAmount(btn, amount) {
+      document.querySelectorAll('.amount-btn').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      selectedAmount = amount;
+      document.getElementById('customAmount').value = '';
+      document.getElementById('previewAmount').textContent = amount.toLocaleString('sv-SE') + ' kr';
+    }
+
+    function selectCustomAmount() {
+      const val = parseInt(document.getElementById('customAmount').value);
+      if (val) {
+        document.querySelectorAll('.amount-btn').forEach(b => b.classList.remove('selected'));
+        selectedAmount = val;
+        document.getElementById('previewAmount').textContent = val.toLocaleString('sv-SE') + ' kr';
+      }
+    }
+
+    function selectDelivery(card, type) {
+      document.querySelectorAll('.delivery-card').forEach(c => c.classList.remove('selected'));
+      card.classList.add('selected');
+
+      // Show/hide recipient fields
+      const recipientFields = document.getElementById('recipientFields');
+      if (type === 'recipient') {
+        recipientFields.classList.remove('hidden');
+      } else {
+        recipientFields.classList.add('hidden');
+      }
+    }
+
+    function selectTheme(card) {
+      document.querySelectorAll('.theme-card').forEach(c => c.classList.remove('selected'));
+      card.classList.add('selected');
+    }
+
+    function updateMessagePreview(textarea) {
+      document.getElementById('charCount').textContent = textarea.value.length;
+      document.getElementById('previewMessage').textContent = textarea.value || 'Personligt meddelande visas har';
+    }
+
+    function updateSummary() {
+      const formatted = selectedAmount.toLocaleString('sv-SE') + ' kr';
+      document.getElementById('summaryAmount').textContent = formatted;
+      document.getElementById('summaryTotal').textContent = formatted;
+      document.getElementById('payAmount').textContent = formatted;
+    }
+
+    function showConfirmation() {
+      currentStep = 5;
+      document.querySelectorAll('.step-content').forEach(s => s.classList.add('hidden'));
+      document.getElementById('step5').classList.remove('hidden');
+
+      // Mark all steps as completed
+      document.querySelectorAll('#stepNav .step').forEach(s => s.classList.add('completed'));
+      document.querySelectorAll('#stepNav .step').forEach(s => s.classList.remove('active'));
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function resetFlow() {
+      currentStep = 1;
+      goToStep(1);
+    }
+
+    // Scheduled date toggle
+    document.querySelectorAll('input[name="sendTime"]').forEach(radio => {
+      radio.addEventListener('change', function() {
+        document.getElementById('scheduledDate').classList.toggle('hidden', this.value !== 'scheduled');
+      });
+    });
+  </script>
+
+</body>
+</html>
