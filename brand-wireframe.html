@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="sv" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BackOffice — Company Brand Wireframe</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+          colors: {
+            primary: '#624fa6',
+            primaryLight: '#ede9f7',
+            primaryBorder: '#c4b8e3',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: 'Inter', system-ui, sans-serif; margin: 0; }
+    .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+
+    .nav-item { transition: background 0.1s; }
+    .nav-item:hover { background: #f3f4f6; }
+    .nav-item.active { background: #ede9f7; color: #624fa6; font-weight: 500; }
+    .sub-nav-item.active { background: #ede9f7; color: #624fa6; font-weight: 500; }
+
+    .color-swatch { width: 36px; height: 36px; border-radius: 6px; cursor: pointer; border: 2px solid transparent; }
+    .color-swatch.selected { border-color: #111; position: relative; }
+    .color-swatch.selected::after {
+      content: '✓'; position: absolute; inset: 0; display: flex;
+      align-items: center; justify-content: center; color: white;
+      font-size: 16px; font-weight: 700; text-shadow: 0 0 2px rgba(0,0,0,0.5);
+    }
+
+    .font-preview-aa { font-size: 28px; font-weight: 600; line-height: 1; }
+
+    .chip {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: #ede9f7; color: #624fa6; font-size: 12px;
+      font-weight: 500; padding: 3px 8px; border-radius: 999px;
+    }
+
+    /* Usage chip */
+    .usage-chip {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: white; border: 1px solid #e5e7eb;
+      font-size: 13px; padding: 6px 12px; border-radius: 8px;
+    }
+
+    summary::-webkit-details-marker { display: none; }
+    details[open] summary .chev { transform: rotate(90deg); }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-900">
+
+  <!-- ==================== WIREFRAME HEADER ==================== -->
+  <div class="bg-yellow-50 border-b border-yellow-200 px-4 py-2 text-center text-sm text-yellow-800">
+    <strong>WIREFRAME</strong> — BackOffice: Company &gt; Brand (utökad varumärkessida — visar Alt 4-visionen)
+  </div>
+
+  <div class="flex h-screen overflow-hidden">
+
+    <!-- ==================== SIDEBAR ==================== -->
+    <aside class="w-56 bg-white border-r border-gray-200 flex flex-col flex-shrink-0">
+      <div class="h-14 flex items-center gap-2 px-4 border-b border-gray-200">
+        <div class="w-6 h-6 bg-primary rounded text-white text-[10px] font-bold flex items-center justify-center">O3</div>
+        <span class="font-semibold text-sm tracking-wide">BACKOFFICE</span>
+      </div>
+
+      <nav class="flex-1 overflow-y-auto py-2 text-sm">
+        <a class="nav-item flex items-center gap-2.5 px-4 py-2" href="#"><span class="material-symbols-outlined" style="font-size: 20px">dashboard</span> Dashboard</a>
+        <a class="nav-item flex items-center justify-between px-4 py-2" href="#"><span class="flex items-center gap-2.5"><span class="material-symbols-outlined" style="font-size: 20px">restaurant_menu</span> Articles</span><span class="material-symbols-outlined text-gray-400" style="font-size: 16px">expand_more</span></a>
+        <a class="nav-item flex items-center justify-between px-4 py-2" href="#"><span class="flex items-center gap-2.5"><span class="material-symbols-outlined" style="font-size: 20px">receipt_long</span> Reports</span><span class="material-symbols-outlined text-gray-400" style="font-size: 16px">expand_more</span></a>
+
+        <div class="nav-item active flex items-center justify-between px-4 py-2 cursor-pointer">
+          <span class="flex items-center gap-2.5"><span class="material-symbols-outlined" style="font-size: 20px">store</span> Company</span>
+          <span class="material-symbols-outlined" style="font-size: 16px">expand_less</span>
+        </div>
+        <div class="pl-11 text-sm text-gray-700">
+          <a class="sub-nav-item block py-1.5 hover:text-primary" href="#">My company</a>
+          <a class="sub-nav-item active block py-1.5 pl-2 -ml-2 rounded flex items-center gap-1.5" href="#">Brand <span class="chip">NEW</span></a>
+          <a class="sub-nav-item block py-1.5 hover:text-primary" href="#">Employees</a>
+          <a class="sub-nav-item block py-1.5 hover:text-primary" href="#">Devices</a>
+          <a class="sub-nav-item block py-1.5 hover:text-primary" href="#">User roles</a>
+          <a class="sub-nav-item block py-1.5 hover:text-primary" href="#">API keys</a>
+          <a class="sub-nav-item block py-1.5 hover:text-primary" href="#">Integrations</a>
+        </div>
+
+        <a class="nav-item flex items-center justify-between px-4 py-2" href="#"><span class="flex items-center gap-2.5"><span class="material-symbols-outlined" style="font-size: 20px">settings</span> Settings</span><span class="material-symbols-outlined text-gray-400" style="font-size: 16px">expand_more</span></a>
+        <a class="nav-item flex items-center justify-between px-4 py-2" href="#"><span class="flex items-center gap-2.5"><span class="material-symbols-outlined" style="font-size: 20px">attach_money</span> Finance</span><span class="material-symbols-outlined text-gray-400" style="font-size: 16px">expand_more</span></a>
+        <a class="nav-item flex items-center justify-between px-4 py-2" href="#"><span class="flex items-center gap-2.5"><span class="material-symbols-outlined" style="font-size: 20px">directions_car</span> Online orders</span><span class="material-symbols-outlined text-gray-400" style="font-size: 16px">expand_more</span></a>
+        <a class="nav-item flex items-center justify-between px-4 py-2" href="#"><span class="flex items-center gap-2.5"><span class="material-symbols-outlined" style="font-size: 20px">card_giftcard</span> Gift cards</span><span class="material-symbols-outlined text-gray-400" style="font-size: 16px">expand_more</span></a>
+        <a class="nav-item flex items-center gap-2.5 px-4 py-2" href="#"><span class="material-symbols-outlined" style="font-size: 20px">table_bar</span> Table management</a>
+        <a class="nav-item flex items-center gap-2.5 px-4 py-2" href="#"><span class="material-symbols-outlined" style="font-size: 20px">qr_code_2</span> QR codes</a>
+        <a class="nav-item flex items-center gap-2.5 px-4 py-2" href="#"><span class="material-symbols-outlined" style="font-size: 20px">inventory_2</span> Storage</a>
+      </nav>
+
+      <div class="border-t border-gray-200 p-3">
+        <a class="nav-item flex items-center gap-2.5 px-2 py-2 rounded" href="#"><span class="material-symbols-outlined text-gray-500" style="font-size: 20px">help</span> <span class="text-sm">Help center</span></a>
+      </div>
+    </aside>
+
+    <!-- ==================== MAIN ==================== -->
+    <main class="flex-1 overflow-y-auto">
+      <div class="h-14 bg-white border-b border-gray-200 flex items-center justify-end gap-3 px-6">
+        <span class="material-symbols-outlined text-gray-500" style="font-size: 22px">notifications</span>
+        <div class="w-8 h-8 rounded-full bg-primary text-white text-xs font-semibold flex items-center justify-center">MS</div>
+      </div>
+
+      <div class="p-6">
+        <div class="grid grid-cols-[1fr_380px] gap-6">
+
+          <!-- ========== LEFT: CONFIG ========== -->
+          <div>
+            <h1 class="text-2xl font-semibold mb-1">Brand</h1>
+            <p class="text-sm text-gray-500 mb-5">Your visual identity. These settings are used across all your customer-facing pages — online menu, gift card page, receipts and more.</p>
+
+            <!-- Action bar -->
+            <div class="flex items-center gap-3 mb-6">
+              <button class="bg-primary text-white px-4 py-2 rounded-lg font-medium text-sm flex items-center gap-1.5 hover:opacity-90">
+                <span class="material-symbols-outlined" style="font-size: 18px">save</span> Save
+              </button>
+              <button class="border border-gray-300 bg-white px-4 py-2 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-50">
+                Reset to defaults
+              </button>
+            </div>
+
+            <!-- Usage callout -->
+            <div class="bg-primaryLight border border-primaryBorder rounded-xl p-4 mb-5 flex items-start gap-3">
+              <span class="material-symbols-outlined text-primary" style="font-size: 20px">auto_awesome</span>
+              <div class="text-sm flex-1">
+                <p class="font-medium text-primary mb-1">Used on these pages</p>
+                <div class="flex flex-wrap gap-2 mt-2">
+                  <a href="#" class="usage-chip hover:border-primary hover:text-primary">
+                    <span class="material-symbols-outlined" style="font-size: 16px">restaurant_menu</span>
+                    Online menu
+                    <span class="material-symbols-outlined text-gray-400" style="font-size: 14px">open_in_new</span>
+                  </a>
+                  <a href="#" class="usage-chip hover:border-primary hover:text-primary">
+                    <span class="material-symbols-outlined" style="font-size: 16px">card_giftcard</span>
+                    Gift card page
+                    <span class="material-symbols-outlined text-gray-400" style="font-size: 14px">open_in_new</span>
+                  </a>
+                  <a href="#" class="usage-chip hover:border-primary hover:text-primary">
+                    <span class="material-symbols-outlined" style="font-size: 16px">receipt</span>
+                    Receipts
+                    <span class="material-symbols-outlined text-gray-400" style="font-size: 14px">open_in_new</span>
+                  </a>
+                  <a href="#" class="usage-chip hover:border-primary hover:text-primary">
+                    <span class="material-symbols-outlined" style="font-size: 16px">mail</span>
+                    Email templates
+                    <span class="material-symbols-outlined text-gray-400" style="font-size: 14px">open_in_new</span>
+                  </a>
+                </div>
+                <p class="text-xs text-gray-600 mt-2">Individual pages can override specific settings if needed.</p>
+              </div>
+            </div>
+
+            <!-- ========== SECTION: Logo & slogan ========== -->
+            <section class="bg-white border border-gray-200 rounded-xl p-5 mb-4">
+              <h2 class="font-semibold mb-1">Logo & slogan</h2>
+              <p class="text-sm text-gray-500 mb-4">Upload your logos and add an optional tagline.</p>
+
+              <div class="mb-4">
+                <label class="text-xs text-gray-500 block mb-1">Slogan <span class="text-gray-400">(optional)</span></label>
+                <input type="text" value="Bring your appetite. Leave your worries." class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm outline-none">
+              </div>
+
+              <div class="grid grid-cols-2 gap-4">
+                <div>
+                  <div class="flex items-center justify-between mb-2">
+                    <label class="text-xs font-medium">Light theme logo</label>
+                  </div>
+                  <div class="border border-gray-200 rounded-lg bg-white p-4 flex items-center justify-center h-28 mb-2">
+                    <div class="w-20 h-20 bg-gradient-to-br from-orange-400 to-red-500 rounded flex items-center justify-center text-white text-xs font-bold">[Logo]</div>
+                  </div>
+                  <div class="grid grid-cols-2 gap-2">
+                    <button class="border border-gray-300 rounded-lg py-1.5 text-xs flex items-center justify-center gap-1 hover:bg-gray-50">
+                      <span class="material-symbols-outlined" style="font-size: 14px">upload</span> Upload
+                    </button>
+                    <button class="border border-gray-300 rounded-lg py-1.5 text-xs flex items-center justify-center gap-1 hover:bg-gray-50 text-red-600">
+                      <span class="material-symbols-outlined" style="font-size: 14px">delete</span> Remove
+                    </button>
+                  </div>
+                </div>
+                <div>
+                  <div class="flex items-center justify-between mb-2">
+                    <label class="text-xs font-medium">Dark theme logo</label>
+                  </div>
+                  <div class="border border-gray-200 rounded-lg bg-gray-900 p-4 flex items-center justify-center h-28 mb-2">
+                    <span class="text-gray-500 text-xs">No dark logo — will use light</span>
+                  </div>
+                  <div class="grid grid-cols-2 gap-2">
+                    <button class="border border-gray-300 rounded-lg py-1.5 text-xs flex items-center justify-center gap-1 hover:bg-gray-50">
+                      <span class="material-symbols-outlined" style="font-size: 14px">upload</span> Upload
+                    </button>
+                    <button class="border border-gray-300 rounded-lg py-1.5 text-xs flex items-center justify-center gap-1 hover:bg-gray-50 text-gray-400" disabled>
+                      <span class="material-symbols-outlined" style="font-size: 14px">delete</span> Remove
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <!-- ========== SECTION: Colors (NEW) ========== -->
+            <section class="bg-white border border-gray-200 rounded-xl p-5 mb-4">
+              <div class="flex items-center gap-2 mb-1">
+                <h2 class="font-semibold">Colors</h2>
+                <span class="chip">NEW</span>
+              </div>
+              <p class="text-sm text-gray-500 mb-4">Pick the colors that represent your brand.</p>
+
+              <!-- Primary color -->
+              <div class="mb-5">
+                <label class="text-sm font-medium block mb-2">Primary color</label>
+                <p class="text-xs text-gray-500 mb-2">Used for buttons, links, headings and focus states.</p>
+                <div class="flex items-center gap-3">
+                  <div class="flex gap-2 flex-1">
+                    <div class="color-swatch selected" style="background:#e65a3e"></div>
+                    <div class="color-swatch" style="background:#e8a13d"></div>
+                    <div class="color-swatch" style="background:#59914a"></div>
+                    <div class="color-swatch" style="background:#2b6cb0"></div>
+                    <div class="color-swatch" style="background:#6b46c1"></div>
+                    <div class="color-swatch" style="background:#c13584"></div>
+                    <div class="color-swatch" style="background:#111827"></div>
+                  </div>
+                  <div class="flex items-center gap-2 border border-gray-300 rounded-lg px-2 py-1.5">
+                    <div class="w-5 h-5 rounded" style="background:#e65a3e"></div>
+                    <input type="text" value="#E65A3E" class="w-20 text-xs font-mono outline-none">
+                  </div>
+                </div>
+              </div>
+
+              <!-- Accent color -->
+              <div class="mb-5">
+                <label class="text-sm font-medium block mb-2">Accent color <span class="text-gray-400 font-normal">(optional)</span></label>
+                <p class="text-xs text-gray-500 mb-2">Secondary highlights, badges, decorative elements.</p>
+                <div class="flex items-center gap-3">
+                  <div class="flex gap-2 flex-1">
+                    <div class="color-swatch" style="background:#f5d4a3"></div>
+                    <div class="color-swatch selected" style="background:#facc15"></div>
+                    <div class="color-swatch" style="background:#14b8a6"></div>
+                    <div class="color-swatch" style="background:#ec4899"></div>
+                    <div class="color-swatch" style="background:#9ca3af"></div>
+                  </div>
+                  <div class="flex items-center gap-2 border border-gray-300 rounded-lg px-2 py-1.5">
+                    <div class="w-5 h-5 rounded" style="background:#facc15"></div>
+                    <input type="text" value="#FACC15" class="w-20 text-xs font-mono outline-none">
+                  </div>
+                </div>
+              </div>
+
+              <!-- Default theme -->
+              <div>
+                <label class="text-sm font-medium block mb-2">Default theme</label>
+                <div class="grid grid-cols-2 gap-3">
+                  <div class="border-2 border-primary bg-primaryLight rounded-lg p-3 text-center cursor-pointer">
+                    <div class="w-full h-12 bg-white border border-gray-200 rounded mb-2"></div>
+                    <p class="text-sm font-medium flex items-center justify-center gap-1.5">Light mode <span class="material-symbols-outlined" style="font-size: 14px">light_mode</span></p>
+                  </div>
+                  <div class="border-2 border-gray-200 rounded-lg p-3 text-center cursor-pointer hover:border-gray-400">
+                    <div class="w-full h-12 bg-gray-900 rounded mb-2"></div>
+                    <p class="text-sm font-medium flex items-center justify-center gap-1.5">Dark mode <span class="material-symbols-outlined" style="font-size: 14px">dark_mode</span></p>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <!-- ========== SECTION: Typography (NEW) ========== -->
+            <section class="bg-white border border-gray-200 rounded-xl p-5 mb-4">
+              <div class="flex items-center gap-2 mb-1">
+                <h2 class="font-semibold">Typography</h2>
+                <span class="chip">NEW</span>
+              </div>
+              <p class="text-sm text-gray-500 mb-4">Choose fonts that match your brand personality.</p>
+
+              <div class="grid grid-cols-2 gap-3 mb-4">
+                <div>
+                  <label class="text-xs text-gray-500 block mb-1">Heading font</label>
+                  <select class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm outline-none">
+                    <option>Inter (default)</option>
+                    <option selected>Montserrat</option>
+                    <option>Playfair Display</option>
+                    <option>Oswald</option>
+                    <option>Chela One</option>
+                    <option>Byrd-Black (custom)</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="text-xs text-gray-500 block mb-1">Body font</label>
+                  <select class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm outline-none">
+                    <option selected>Inter (default)</option>
+                    <option>Source Sans 3</option>
+                    <option>Lato</option>
+                    <option>Work Sans</option>
+                    <option>Moderat Mono</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Font preview -->
+              <div class="bg-gray-50 rounded-lg p-4">
+                <p class="text-xs text-gray-500 uppercase tracking-wide mb-2">Preview</p>
+                <p class="font-preview-aa mb-1" style="font-family: 'Montserrat', sans-serif">Your Restaurant Name</p>
+                <p class="text-sm text-gray-700">This is body text that appears on menus, receipts and emails. The quick brown fox jumps over the lazy dog.</p>
+              </div>
+
+              <button class="mt-4 text-sm text-primary font-medium flex items-center gap-1 hover:underline">
+                <span class="material-symbols-outlined" style="font-size: 16px">upload_file</span>
+                Upload custom font (.woff, .woff2)
+              </button>
+            </section>
+
+            <!-- ========== SECTION: Banner (NEW — shared) ========== -->
+            <section class="bg-white border border-gray-200 rounded-xl p-5 mb-4">
+              <div class="flex items-center gap-2 mb-1">
+                <h2 class="font-semibold">Default banner</h2>
+                <span class="chip">NEW</span>
+              </div>
+              <p class="text-sm text-gray-500 mb-4">A shared hero image used on your online menu, gift card page and other customer pages. Each page can override this.</p>
+
+              <div class="h-32 bg-gradient-to-br from-gray-200 to-gray-300 rounded-lg border border-gray-200 flex items-center justify-center text-gray-500 text-sm mb-3">
+                [Default banner image]
+              </div>
+              <div class="flex gap-2">
+                <button class="bg-primary text-white px-4 py-2 rounded-lg text-sm font-medium flex items-center gap-1.5 hover:opacity-90">
+                  <span class="material-symbols-outlined" style="font-size: 16px">upload</span> Upload image
+                </button>
+                <button class="border border-gray-300 bg-white px-4 py-2 rounded-lg text-sm font-medium flex items-center gap-1.5 hover:bg-gray-50">
+                  <span class="material-symbols-outlined" style="font-size: 16px">delete</span> Remove
+                </button>
+              </div>
+            </section>
+
+            <!-- ========== SECTION: Card style (NEW) ========== -->
+            <section class="bg-white border border-gray-200 rounded-xl p-5 mb-4">
+              <div class="flex items-center gap-2 mb-1">
+                <h2 class="font-semibold">Card style</h2>
+                <span class="chip">NEW</span>
+              </div>
+              <p class="text-sm text-gray-500 mb-4">How rounded and shadowed cards appear across your pages.</p>
+
+              <label class="text-xs text-gray-500 block mb-2">Corner rounding</label>
+              <div class="grid grid-cols-5 gap-2 mb-4">
+                <button class="border border-gray-300 rounded-none bg-white p-3 text-center text-xs">0 <div class="mt-1 text-[10px] text-gray-500">Sharp</div></button>
+                <button class="border border-gray-300 bg-white p-3 text-center text-xs" style="border-radius: 4px">0.25</button>
+                <button class="border border-gray-300 bg-white p-3 text-center text-xs" style="border-radius: 8px">0.5</button>
+                <button class="border-2 border-primary bg-primaryLight p-3 text-center text-xs font-semibold" style="border-radius: 12px">0.75</button>
+                <button class="border border-gray-300 bg-white p-3 text-center text-xs" style="border-radius: 999px">1 <div class="mt-1 text-[10px] text-gray-500">Pill</div></button>
+              </div>
+            </section>
+
+            <!-- ========== SECTION: Advanced — custom CSS ========== -->
+            <details class="bg-white border border-gray-200 rounded-xl mb-4">
+              <summary class="p-5 flex items-center justify-between cursor-pointer">
+                <div class="flex items-center gap-2">
+                  <h2 class="font-semibold">Advanced — Custom CSS</h2>
+                  <span class="chip">Pro</span>
+                </div>
+                <span class="chev material-symbols-outlined text-gray-400 transition-transform" style="font-size: 20px">chevron_right</span>
+              </summary>
+              <div class="px-5 pb-5">
+                <p class="text-sm text-gray-500 mb-3">Add custom CSS that applies to all your customer-facing pages. Use this to fine-tune spacing, borders, or brand-specific styling beyond the options above.</p>
+
+                <div class="bg-amber-50 border border-amber-200 rounded-lg p-3 mb-3 flex items-start gap-2.5">
+                  <span class="material-symbols-outlined text-amber-600" style="font-size: 18px">warning</span>
+                  <div class="text-sm text-amber-800">
+                    <p class="font-medium">Use with care</p>
+                    <p class="text-xs mt-0.5">Custom CSS can break the layout. We recommend testing before saving. Changes apply on all pages — online menu, gift cards, receipts and emails.</p>
+                  </div>
+                </div>
+
+                <textarea rows="8" class="w-full font-mono text-xs border border-gray-300 rounded-lg p-3 outline-none resize-none bg-gray-50" placeholder="/* Your custom CSS */">/* Example: custom button hover */
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* Example: custom background pattern */
+body {
+  background-image: url('...');
+}</textarea>
+
+                <div class="flex gap-2 mt-3">
+                  <button class="border border-gray-300 bg-white px-3 py-1.5 rounded-lg text-xs font-medium flex items-center gap-1 hover:bg-gray-50">
+                    <span class="material-symbols-outlined" style="font-size: 14px">play_arrow</span> Preview changes
+                  </button>
+                  <button class="border border-gray-300 bg-white px-3 py-1.5 rounded-lg text-xs font-medium flex items-center gap-1 hover:bg-gray-50">
+                    <span class="material-symbols-outlined" style="font-size: 14px">code</span> View variables
+                  </button>
+                </div>
+              </div>
+            </details>
+
+            <div class="h-12"></div>
+          </div>
+
+          <!-- ========== RIGHT: PREVIEW PANEL ========== -->
+          <aside class="sticky top-6 self-start space-y-3">
+            <div class="flex items-center justify-between">
+              <h3 class="text-sm font-semibold">Preview</h3>
+              <!-- Surface toggle -->
+              <div class="flex items-center gap-1 bg-white border border-gray-200 rounded-lg p-0.5 text-xs">
+                <button class="px-2 py-1 bg-gray-100 rounded font-medium">Menu</button>
+                <button class="px-2 py-1 text-gray-500">Gift card</button>
+                <button class="px-2 py-1 text-gray-500">Receipt</button>
+              </div>
+            </div>
+
+            <!-- Online menu preview -->
+            <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-200">
+              <div class="h-16 bg-gradient-to-br from-gray-200 to-gray-300"></div>
+              <div class="px-3 -mt-5 pb-3">
+                <div class="flex items-end gap-2 mb-2">
+                  <div class="w-10 h-10 bg-gradient-to-br from-orange-400 to-red-500 rounded border-2 border-white"></div>
+                  <div class="pb-0.5">
+                    <p class="text-xs font-semibold" style="font-family: 'Montserrat', sans-serif">Your Restaurant</p>
+                    <p class="text-[9px] text-gray-500">Bring your appetite.</p>
+                  </div>
+                </div>
+                <div class="grid grid-cols-2 gap-1.5 mb-2">
+                  <div class="bg-gray-100 h-10 flex items-center justify-center text-[9px] text-gray-400" style="border-radius: 12px">[Dish]</div>
+                  <div class="bg-gray-100 h-10 flex items-center justify-center text-[9px] text-gray-400" style="border-radius: 12px">[Dish]</div>
+                </div>
+                <button class="w-full text-white text-[10px] py-1.5 font-medium" style="background:#E65A3E;border-radius: 12px">Add to order</button>
+              </div>
+            </div>
+
+            <!-- Gift card preview -->
+            <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-200">
+              <div class="px-3 py-3">
+                <div class="flex items-center gap-2 mb-2">
+                  <div class="w-8 h-8 bg-gradient-to-br from-orange-400 to-red-500 rounded"></div>
+                  <div>
+                    <p class="text-xs font-semibold" style="font-family: 'Montserrat', sans-serif">Your Restaurant</p>
+                    <p class="text-[8px] text-gray-500">Köp presentkort</p>
+                  </div>
+                </div>
+                <div class="grid grid-cols-3 gap-1 mb-2">
+                  <div class="border border-gray-300 text-[9px] py-1 text-center" style="border-radius: 8px">200 kr</div>
+                  <div class="text-white text-[9px] py-1 text-center" style="background:#E65A3E;border-radius: 8px">500 kr</div>
+                  <div class="border border-gray-300 text-[9px] py-1 text-center" style="border-radius: 8px">1000 kr</div>
+                </div>
+                <button class="w-full text-white text-[10px] py-1.5 font-medium" style="background:#E65A3E;border-radius: 12px">Fortsätt</button>
+              </div>
+            </div>
+
+            <p class="text-xs text-gray-500 text-center pt-2">Same brand, different surfaces — changes here flow everywhere.</p>
+          </aside>
+
+        </div>
+      </div>
+    </main>
+  </div>
+
+</body>
+</html>
