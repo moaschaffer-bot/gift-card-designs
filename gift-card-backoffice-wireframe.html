@@ -52,7 +52,7 @@
     .toggle-card.selected .radio-dot::after { content: ''; width: 8px; height: 8px; background: #624fa6; border-radius: 50%; }
 
     /* iOS-style toggle switch */
-    .switch { position: relative; width: 40px; height: 24px; }
+    .switch { position: relative; display: inline-block; width: 40px; height: 24px; vertical-align: middle; }
     .switch input { opacity: 0; width: 0; height: 0; }
     .switch-slider {
       position: absolute; cursor: pointer; inset: 0; background: #d1d5db;
@@ -166,7 +166,6 @@
               Online sales
             </div>
             <div class="pl-3 border-l-2 border-gray-200">
-              <a class="sub-nav-item block py-1.5 hover:text-primary" href="#" id="navMenu" onclick="showView('menu'); return false;">Menu</a>
               <a class="sub-nav-item active block py-1.5 pl-2 -ml-2 rounded" href="#" id="navPageLayout" onclick="showView('pageLayout'); return false;">Page layout</a>
               <a class="sub-nav-item block py-1.5 hover:text-primary" href="#" id="navSettings" onclick="showView('settings'); return false;">Settings</a>
             </div>
@@ -380,7 +379,7 @@
             <span class="material-symbols-outlined text-primary" style="font-size: 20px">info</span>
             <div class="text-sm text-gray-700">
               <p class="font-medium text-primary mb-1">"Sell online"-toggeln</p>
-              <p>Styr snabbt vilka artiklar som ska visas på din online-presentkortssida. Du kan också styra ordning och synlighet i detalj under <strong>Online sales → Menu</strong>.</p>
+              <p>Styr vilka presentkortsartiklar som visas på din online-presentkortssida. Utseendet på sidan styrs under <strong>Online sales → Page layout</strong>.</p>
             </div>
           </div>
           <div class="mt-4 bg-gray-50 border border-gray-200 rounded-xl p-4 flex items-start gap-3 no-license-only hidden">
@@ -730,188 +729,6 @@
 
         </div>
 
-        <!-- ============================================================ -->
-        <!--  VIEW: MENU (which gift cards to sell online)                 -->
-        <!-- ============================================================ -->
-        <div id="view-menu" class="hidden">
-          <div class="flex items-start justify-between mb-1">
-            <h1 class="text-2xl font-semibold">Online menu</h1>
-            <a href="#" class="text-primary text-sm font-medium flex items-center gap-1 hover:underline">
-              <span class="material-symbols-outlined" style="font-size: 16px">open_in_new</span> Visit page
-            </a>
-          </div>
-          <p class="text-sm text-gray-500 mb-5">Choose which of your gift card articles to sell online, reorder them, and override how they appear on the page.</p>
-
-          <!-- Two-column: list + live preview -->
-          <div class="grid grid-cols-[1fr_360px] gap-6 items-start">
-            <div>
-              <!-- Action bar -->
-              <div class="flex items-center gap-3 mb-4">
-                <button class="bg-primary text-white px-4 py-2 rounded-lg font-medium text-sm flex items-center gap-1.5 hover:opacity-90">
-                  <span class="material-symbols-outlined" style="font-size: 18px">add</span> Add from catalog
-                </button>
-                <div class="flex-1"></div>
-                <div class="flex items-center border border-gray-300 rounded-lg px-3 py-1.5 bg-white">
-                  <span class="material-symbols-outlined text-gray-400" style="font-size: 18px">search</span>
-                  <input class="ml-2 text-sm outline-none w-48" placeholder="Search articles"/>
-                </div>
-              </div>
-
-              <!-- Menu items list -->
-              <div class="bg-white border border-gray-200 rounded-xl overflow-hidden">
-                <!-- Header -->
-                <div class="grid grid-cols-[28px_64px_1fr_120px_90px_90px_32px] gap-3 px-4 py-2.5 bg-gray-50 border-b border-gray-200 text-xs uppercase tracking-wide text-gray-500">
-                  <div></div>
-                  <div></div>
-                  <div>Article</div>
-                  <div>Online name</div>
-                  <div>Price</div>
-                  <div class="text-center">Visible</div>
-                  <div></div>
-                </div>
-
-                <!-- Row 1 -->
-                <div class="grid grid-cols-[28px_64px_1fr_120px_90px_90px_32px] gap-3 px-4 py-3 border-b border-gray-100 items-center hover:bg-gray-50">
-                  <span class="material-symbols-outlined text-gray-300 cursor-grab" style="font-size: 20px">drag_indicator</span>
-                  <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
-                    <span class="material-symbols-outlined text-gray-400" style="font-size: 22px">card_giftcard</span>
-                  </div>
-                  <div>
-                    <p class="text-sm font-medium">Voucher 500</p>
-                    <p class="text-xs text-gray-500">Gift cards · Fixed amount</p>
-                  </div>
-                  <div class="text-sm text-gray-600">Presentkort 500 kr</div>
-                  <div class="text-sm">500 kr</div>
-                  <div class="flex justify-center">
-                    <label class="switch"><input type="checkbox" checked><span class="switch-slider"></span></label>
-                  </div>
-                  <button class="text-gray-400 hover:text-gray-700"><span class="material-symbols-outlined" style="font-size: 20px">more_vert</span></button>
-                </div>
-
-                <!-- Row 2 -->
-                <div class="grid grid-cols-[28px_64px_1fr_120px_90px_90px_32px] gap-3 px-4 py-3 border-b border-gray-100 items-center hover:bg-gray-50">
-                  <span class="material-symbols-outlined text-gray-300 cursor-grab" style="font-size: 20px">drag_indicator</span>
-                  <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
-                    <span class="material-symbols-outlined text-gray-400" style="font-size: 22px">card_giftcard</span>
-                  </div>
-                  <div>
-                    <p class="text-sm font-medium flex items-center gap-1.5">Voucher 200 <span class="chip">Featured</span></p>
-                    <p class="text-xs text-gray-500">Gift cards · Fixed amount</p>
-                  </div>
-                  <div class="text-sm text-gray-600">Presentkort 200 kr</div>
-                  <div class="text-sm">200 kr</div>
-                  <div class="flex justify-center">
-                    <label class="switch"><input type="checkbox" checked><span class="switch-slider"></span></label>
-                  </div>
-                  <button class="text-gray-400 hover:text-gray-700"><span class="material-symbols-outlined" style="font-size: 20px">more_vert</span></button>
-                </div>
-
-                <!-- Row 3 -->
-                <div class="grid grid-cols-[28px_64px_1fr_120px_90px_90px_32px] gap-3 px-4 py-3 border-b border-gray-100 items-center hover:bg-gray-50">
-                  <span class="material-symbols-outlined text-gray-300 cursor-grab" style="font-size: 20px">drag_indicator</span>
-                  <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
-                    <span class="material-symbols-outlined text-gray-400" style="font-size: 22px">card_giftcard</span>
-                  </div>
-                  <div>
-                    <p class="text-sm font-medium">Voucher 100</p>
-                    <p class="text-xs text-gray-500">Gift cards · Fixed amount</p>
-                  </div>
-                  <div class="text-sm text-gray-600">Presentkort 100 kr</div>
-                  <div class="text-sm">100 kr</div>
-                  <div class="flex justify-center">
-                    <label class="switch"><input type="checkbox" checked><span class="switch-slider"></span></label>
-                  </div>
-                  <button class="text-gray-400 hover:text-gray-700"><span class="material-symbols-outlined" style="font-size: 20px">more_vert</span></button>
-                </div>
-
-                <!-- Row 4 -->
-                <div class="grid grid-cols-[28px_64px_1fr_120px_90px_90px_32px] gap-3 px-4 py-3 border-b border-gray-100 items-center hover:bg-gray-50">
-                  <span class="material-symbols-outlined text-gray-300 cursor-grab" style="font-size: 20px">drag_indicator</span>
-                  <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
-                    <span class="material-symbols-outlined text-gray-400" style="font-size: 22px">edit_note</span>
-                  </div>
-                  <div>
-                    <p class="text-sm font-medium">Gift card OPEN PRICE</p>
-                    <p class="text-xs text-gray-500">Gift cards · Custom amount</p>
-                  </div>
-                  <div class="text-sm text-gray-600">Valfritt belopp</div>
-                  <div class="text-sm text-gray-500">100–5 000 kr</div>
-                  <div class="flex justify-center">
-                    <label class="switch"><input type="checkbox" checked><span class="switch-slider"></span></label>
-                  </div>
-                  <button class="text-gray-400 hover:text-gray-700"><span class="material-symbols-outlined" style="font-size: 20px">more_vert</span></button>
-                </div>
-
-                <!-- Row 5 — not online -->
-                <div class="grid grid-cols-[28px_64px_1fr_120px_90px_90px_32px] gap-3 px-4 py-3 border-b border-gray-100 items-center hover:bg-gray-50 opacity-60">
-                  <span class="material-symbols-outlined text-gray-300 cursor-grab" style="font-size: 20px">drag_indicator</span>
-                  <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
-                    <span class="material-symbols-outlined text-gray-400" style="font-size: 22px">coffee</span>
-                  </div>
-                  <div>
-                    <p class="text-sm font-medium">Kaffekort 300</p>
-                    <p class="text-xs text-gray-500">Gift cards · Fixed amount</p>
-                  </div>
-                  <div class="text-sm text-gray-400 italic">—</div>
-                  <div class="text-sm">300 kr</div>
-                  <div class="flex justify-center">
-                    <label class="switch"><input type="checkbox"><span class="switch-slider"></span></label>
-                  </div>
-                  <button class="text-gray-400 hover:text-gray-700"><span class="material-symbols-outlined" style="font-size: 20px">more_vert</span></button>
-                </div>
-
-                <!-- Row 6 — discount -->
-                <div class="grid grid-cols-[28px_64px_1fr_120px_90px_90px_32px] gap-3 px-4 py-3 items-center hover:bg-gray-50 opacity-60">
-                  <span class="material-symbols-outlined text-gray-300 cursor-grab" style="font-size: 20px">drag_indicator</span>
-                  <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
-                    <span class="material-symbols-outlined text-gray-400" style="font-size: 22px">percent</span>
-                  </div>
-                  <div>
-                    <p class="text-sm font-medium">Gift card 10% discount</p>
-                    <p class="text-xs text-gray-500">Gift cards · Discount</p>
-                  </div>
-                  <div class="text-sm text-gray-400 italic">—</div>
-                  <div class="text-sm text-gray-500">—</div>
-                  <div class="flex justify-center">
-                    <label class="switch"><input type="checkbox"><span class="switch-slider"></span></label>
-                  </div>
-                  <button class="text-gray-400 hover:text-gray-700"><span class="material-symbols-outlined" style="font-size: 20px">more_vert</span></button>
-                </div>
-              </div>
-
-              <p class="text-xs text-gray-500 mt-3 flex items-center gap-1.5">
-                <span class="material-symbols-outlined" style="font-size: 14px">info</span>
-                Drag to reorder. Articles toggled off are hidden from the online page but still sold in-store.
-              </p>
-            </div>
-
-            <!-- Live preview -->
-            <aside class="sticky top-4">
-              <p class="text-xs uppercase tracking-wide text-gray-500 mb-2">Live preview</p>
-              <div class="bg-white border border-gray-200 rounded-xl p-4">
-                <p class="text-sm font-semibold mb-3">Choose an amount</p>
-                <div class="grid grid-cols-3 gap-2 mb-3">
-                  <div class="border border-gray-800 rounded-lg p-2 text-center">
-                    <p class="text-xs font-bold">200 kr</p>
-                    <p class="text-[9px] text-gray-500">Featured</p>
-                  </div>
-                  <div class="border border-gray-200 rounded-lg p-2 text-center">
-                    <p class="text-xs font-bold">500 kr</p>
-                  </div>
-                  <div class="border border-gray-200 rounded-lg p-2 text-center">
-                    <p class="text-xs font-bold">100 kr</p>
-                  </div>
-                </div>
-                <div class="border border-gray-200 rounded-lg p-2 mb-3">
-                  <p class="text-[10px] text-gray-500 mb-1">Custom amount</p>
-                  <p class="text-xs font-medium">Enter 100–5 000 kr</p>
-                </div>
-                <button class="w-full bg-gray-800 text-white rounded py-2 text-xs font-semibold">Continue</button>
-              </div>
-              <p class="text-xs text-gray-500 mt-2 text-center">Reflects your menu order and toggles</p>
-            </aside>
-          </div>
-        </div>
 
         <!-- ============================================================ -->
         <!--  VIEW: SETTINGS (online-specific rules)                       -->
@@ -935,34 +752,13 @@
               </div>
             </section>
 
-            <!-- Validity -->
-            <section class="bg-white border border-gray-200 rounded-xl p-5 mb-4">
-              <h2 class="font-semibold mb-1">Validity</h2>
-              <p class="text-sm text-gray-500 mb-4">How long gift cards are valid from the purchase date.</p>
-              <div class="grid grid-cols-2 gap-4">
-                <div>
-                  <label class="text-xs text-gray-500 block mb-1">Default validity</label>
-                  <div class="flex items-center border border-gray-300 rounded-lg overflow-hidden">
-                    <input type="number" value="12" class="flex-1 px-3 py-2 text-sm outline-none">
-                    <select class="pr-3 text-gray-500 text-sm bg-white outline-none">
-                      <option>months</option>
-                      <option>years</option>
-                      <option>days</option>
-                    </select>
-                  </div>
-                </div>
-                <div>
-                  <label class="text-xs text-gray-500 block mb-1">Expiry reminder</label>
-                  <div class="flex items-center border border-gray-300 rounded-lg overflow-hidden">
-                    <input type="number" value="30" class="flex-1 px-3 py-2 text-sm outline-none">
-                    <span class="pr-3 text-gray-500 text-sm">days before</span>
-                  </div>
-                </div>
+            <!-- Validity info (no setting, just pointer) -->
+            <section class="bg-gray-50 border border-gray-200 rounded-xl p-4 mb-4 flex items-start gap-3">
+              <span class="material-symbols-outlined text-gray-500 mt-0.5" style="font-size: 20px">schedule</span>
+              <div class="text-sm text-gray-700">
+                <p class="font-medium mb-0.5">Validity is set per article</p>
+                <p class="text-gray-600">How long a gift card is valid is defined on each article in <a href="#" class="text-primary font-medium hover:underline" onclick="showView('articles'); return false;">Gift cards → Articles</a>.</p>
               </div>
-              <p class="text-xs text-gray-500 mt-2 flex items-center gap-1.5">
-                <span class="material-symbols-outlined" style="font-size: 14px">info</span>
-                Check local laws — in some markets gift cards must be valid for a minimum period.
-              </p>
             </section>
 
             <!-- Redemption rules -->
@@ -974,28 +770,21 @@
                 <div class="flex items-center justify-between py-3">
                   <div>
                     <p class="text-sm font-medium">Allow partial payment</p>
-                    <p class="text-xs text-gray-500">Pay remainder with card/Swish if balance is too low</p>
+                    <p class="text-xs text-gray-500">If the gift card balance doesn't cover the whole order, the customer can pay the remainder with card or Swish.</p>
                   </div>
                   <label class="switch"><input type="checkbox" checked><span class="switch-slider"></span></label>
                 </div>
                 <div class="flex items-center justify-between py-3">
                   <div>
                     <p class="text-sm font-medium">Allow stacking multiple cards</p>
-                    <p class="text-xs text-gray-500">Customer can combine up to <span class="font-medium">3</span> cards per order</p>
+                    <p class="text-xs text-gray-500">The customer can combine up to <span class="font-medium">3</span> gift cards in a single order.</p>
                   </div>
                   <label class="switch"><input type="checkbox" checked><span class="switch-slider"></span></label>
                 </div>
                 <div class="flex items-center justify-between py-3">
                   <div>
-                    <p class="text-sm font-medium">Keep remaining balance on card</p>
-                    <p class="text-xs text-gray-500">Unused amount stays on the gift card for next time</p>
-                  </div>
-                  <label class="switch"><input type="checkbox" checked><span class="switch-slider"></span></label>
-                </div>
-                <div class="flex items-center justify-between py-3">
-                  <div>
-                    <p class="text-sm font-medium">Allow gift card to pay for gift cards</p>
-                    <p class="text-xs text-gray-500">Usually off — prevents fraud loops</p>
+                    <p class="text-sm font-medium">Allow buying gift cards with a gift card</p>
+                    <p class="text-xs text-gray-500">Usually off — prevents customers from converting one gift card into another.</p>
                   </div>
                   <label class="switch"><input type="checkbox"><span class="switch-slider"></span></label>
                 </div>
@@ -1004,8 +793,8 @@
 
             <!-- Email templates -->
             <section class="bg-white border border-gray-200 rounded-xl p-5 mb-4">
-              <h2 class="font-semibold mb-1">Email delivery</h2>
-              <p class="text-sm text-gray-500 mb-4">Emails sent when a gift card is purchased online. Uses your <span class="font-medium">Brand</span> logo and colors.</p>
+              <h2 class="font-semibold mb-1">Email messages</h2>
+              <p class="text-sm text-gray-500 mb-4">What the emails say. The layout (logo, colors) comes from your <span class="font-medium">Brand</span> settings.</p>
 
               <div class="grid grid-cols-2 gap-3 mb-4">
                 <div>
@@ -1019,31 +808,89 @@
               </div>
 
               <!-- Email template tabs -->
-              <div class="flex gap-6 border-b border-gray-200 mb-3">
+              <div class="flex gap-6 border-b border-gray-200 mb-4">
                 <button class="pb-2 border-b-2 border-primary text-primary text-sm font-medium">To recipient</button>
                 <button class="pb-2 text-gray-500 text-sm hover:text-gray-700">To buyer (receipt)</button>
                 <button class="pb-2 text-gray-500 text-sm hover:text-gray-700">Expiry reminder</button>
               </div>
 
-              <div class="mb-3">
-                <label class="text-xs text-gray-500 block mb-1">Subject</label>
-                <input type="text" value="Du har fått ett presentkort från {{sender}}!" class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm outline-none focus:border-primary">
-              </div>
-              <div>
-                <label class="text-xs text-gray-500 block mb-1">Message</label>
-                <textarea rows="4" class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm outline-none focus:border-primary resize-none">Hej {{recipient}}!
+              <!-- Two-column: editor + live preview -->
+              <div class="grid grid-cols-2 gap-4">
+                <!-- LEFT: editor -->
+                <div>
+                  <label class="text-xs text-gray-500 block mb-1">Subject</label>
+                  <div class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm mb-3 bg-white">
+                    Du har fått ett presentkort från <span class="inline-flex items-center gap-1 bg-primaryLight text-primary rounded px-1.5 py-0.5 text-xs font-medium border border-primaryBorder">
+                      <span class="material-symbols-outlined" style="font-size: 12px">person</span> Sender's name
+                    </span>!
+                  </div>
 
-{{sender}} har skickat dig ett presentkort värt {{amount}}. Använd koden {{code}} vid ditt nästa besök eller online.</textarea>
-                <p class="text-xs text-gray-500 mt-1">Variables: <code class="bg-gray-100 px-1 rounded">{{recipient}}</code> <code class="bg-gray-100 px-1 rounded">{{sender}}</code> <code class="bg-gray-100 px-1 rounded">{{amount}}</code> <code class="bg-gray-100 px-1 rounded">{{code}}</code> <code class="bg-gray-100 px-1 rounded">{{message}}</code></p>
+                  <label class="text-xs text-gray-500 block mb-1">Message</label>
+                  <div class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm bg-white min-h-[140px] leading-relaxed">
+                    Hej <span class="inline-flex items-center gap-1 bg-primaryLight text-primary rounded px-1.5 py-0.5 text-xs font-medium border border-primaryBorder">
+                      <span class="material-symbols-outlined" style="font-size: 12px">person</span> Recipient's name
+                    </span>!<br><br>
+                    <span class="inline-flex items-center gap-1 bg-primaryLight text-primary rounded px-1.5 py-0.5 text-xs font-medium border border-primaryBorder">
+                      <span class="material-symbols-outlined" style="font-size: 12px">person</span> Sender's name
+                    </span> har skickat dig ett presentkort värt <span class="inline-flex items-center gap-1 bg-primaryLight text-primary rounded px-1.5 py-0.5 text-xs font-medium border border-primaryBorder">
+                      <span class="material-symbols-outlined" style="font-size: 12px">payments</span> Amount
+                    </span>.<br><br>
+                    Använd koden <span class="inline-flex items-center gap-1 bg-primaryLight text-primary rounded px-1.5 py-0.5 text-xs font-medium border border-primaryBorder">
+                      <span class="material-symbols-outlined" style="font-size: 12px">confirmation_number</span> Gift card code
+                    </span> vid ditt nästa besök eller online.
+                  </div>
+
+                  <!-- Insert chips -->
+                  <p class="text-xs text-gray-500 mt-3 mb-1.5">Click to insert where your cursor is:</p>
+                  <div class="flex flex-wrap gap-1.5">
+                    <button class="inline-flex items-center gap-1 bg-white border border-gray-300 hover:border-primary hover:text-primary rounded-full px-2.5 py-1 text-xs font-medium">
+                      <span class="material-symbols-outlined" style="font-size: 13px">person</span> Recipient's name
+                    </button>
+                    <button class="inline-flex items-center gap-1 bg-white border border-gray-300 hover:border-primary hover:text-primary rounded-full px-2.5 py-1 text-xs font-medium">
+                      <span class="material-symbols-outlined" style="font-size: 13px">person</span> Sender's name
+                    </button>
+                    <button class="inline-flex items-center gap-1 bg-white border border-gray-300 hover:border-primary hover:text-primary rounded-full px-2.5 py-1 text-xs font-medium">
+                      <span class="material-symbols-outlined" style="font-size: 13px">payments</span> Amount
+                    </button>
+                    <button class="inline-flex items-center gap-1 bg-white border border-gray-300 hover:border-primary hover:text-primary rounded-full px-2.5 py-1 text-xs font-medium">
+                      <span class="material-symbols-outlined" style="font-size: 13px">confirmation_number</span> Gift card code
+                    </button>
+                    <button class="inline-flex items-center gap-1 bg-white border border-gray-300 hover:border-primary hover:text-primary rounded-full px-2.5 py-1 text-xs font-medium">
+                      <span class="material-symbols-outlined" style="font-size: 13px">chat</span> Personal message
+                    </button>
+                  </div>
+                  <p class="text-xs text-gray-500 mt-2 flex items-start gap-1.5">
+                    <span class="material-symbols-outlined flex-shrink-0" style="font-size: 14px">info</span>
+                    The highlighted fields fill in automatically with real values when the email is sent.
+                  </p>
+                </div>
+
+                <!-- RIGHT: live preview -->
+                <div>
+                  <p class="text-xs text-gray-500 mb-1 flex items-center gap-1.5">
+                    <span class="material-symbols-outlined" style="font-size: 14px">visibility</span> Preview — sample values
+                  </p>
+                  <div class="border border-gray-200 rounded-lg bg-gray-50 overflow-hidden">
+                    <div class="bg-white border-b border-gray-200 px-3 py-2 text-xs">
+                      <p class="text-gray-500">From: <span class="text-gray-900 font-medium">World of Volvo</span></p>
+                      <p class="text-gray-500">Subject: <span class="text-gray-900 font-medium">Du har fått ett presentkort från Anna!</span></p>
+                    </div>
+                    <div class="p-4 bg-white">
+                      <div class="h-8 bg-gray-100 rounded mb-3 flex items-center justify-center text-[10px] text-gray-400">[Logo from Brand]</div>
+                      <p class="text-sm mb-2">Hej <span class="font-medium">Erik</span>!</p>
+                      <p class="text-sm mb-2"><span class="font-medium">Anna</span> har skickat dig ett presentkort värt <span class="font-medium">500 kr</span>.</p>
+                      <p class="text-sm mb-3">Använd koden <span class="font-mono bg-gray-100 px-1.5 py-0.5 rounded text-xs">GC-8F2K-91LM</span> vid ditt nästa besök eller online.</p>
+                      <div class="bg-gray-100 rounded p-2 text-xs text-gray-600 italic border-l-2 border-gray-300">"Grattis på 30-årsdagen! ❤️"</div>
+                    </div>
+                  </div>
+                </div>
               </div>
 
-              <div class="mt-4 flex items-center gap-3">
-                <button class="bg-white border border-gray-300 text-gray-700 px-4 py-2 rounded-lg text-sm font-medium flex items-center gap-1.5 hover:bg-gray-50">
-                  <span class="material-symbols-outlined" style="font-size: 16px">visibility</span> Preview
-                </button>
+              <div class="mt-4 flex items-center gap-3 pt-3 border-t border-gray-100">
                 <button class="bg-white border border-gray-300 text-gray-700 px-4 py-2 rounded-lg text-sm font-medium flex items-center gap-1.5 hover:bg-gray-50">
                   <span class="material-symbols-outlined" style="font-size: 16px">mail</span> Send test email
                 </button>
+                <button class="text-gray-500 text-sm hover:text-gray-700">Reset to default</button>
               </div>
             </section>
 
@@ -1110,11 +957,11 @@
 
   <script>
     function showView(view) {
-      ['articles','pageLayout','menu','settings'].forEach(v => {
+      ['articles','pageLayout','settings'].forEach(v => {
         const el = document.getElementById('view-' + v);
         if (el) el.classList.toggle('hidden', view !== v);
       });
-      const navMap = { articles: 'navArticles', pageLayout: 'navPageLayout', menu: 'navMenu', settings: 'navSettings' };
+      const navMap = { articles: 'navArticles', pageLayout: 'navPageLayout', settings: 'navSettings' };
       Object.entries(navMap).forEach(([v, id]) => {
         const el = document.getElementById(id);
         if (!el) return;
@@ -1145,7 +992,7 @@
 
       // If we're on an online-sales-only view without a license, switch to Articles
       if (!hasOnline) {
-        const onlineViews = ['view-pageLayout', 'view-menu', 'view-settings'];
+        const onlineViews = ['view-pageLayout', 'view-settings'];
         const onOnline = onlineViews.some(id => {
           const el = document.getElementById(id);
           return el && !el.classList.contains('hidden');
