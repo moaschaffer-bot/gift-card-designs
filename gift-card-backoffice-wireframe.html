@@ -419,103 +419,52 @@
               </a>
             </div>
 
-            <!-- ========== SECTION: Theme ========== -->
-            <section class="bg-white border border-gray-200 rounded-xl p-5 mb-4">
-              <h2 class="font-semibold mb-3">Theme</h2>
-              <div class="grid grid-cols-2 gap-3">
-                <div class="toggle-card selected">
-                  <div class="radio-dot"></div>
-                  <span class="text-sm font-medium flex items-center gap-1.5">Light mode <span class="material-symbols-outlined" style="font-size: 16px">light_mode</span></span>
+            <!-- ========== SECTION: Brand inheritance callout ========== -->
+            <section class="bg-gradient-to-br from-gray-50 to-white border border-gray-200 rounded-xl p-5 mb-4">
+              <div class="flex items-start gap-3">
+                <div class="w-10 h-10 rounded-lg bg-primaryLight flex items-center justify-center flex-shrink-0">
+                  <span class="material-symbols-outlined text-primary" style="font-size: 22px">palette</span>
                 </div>
-                <div class="toggle-card">
-                  <div class="radio-dot"></div>
-                  <span class="text-sm font-medium flex items-center gap-1.5">Dark mode <span class="material-symbols-outlined" style="font-size: 16px">dark_mode</span></span>
-                </div>
-              </div>
-            </section>
+                <div class="flex-1">
+                  <div class="flex items-center gap-2 mb-1">
+                    <h2 class="font-semibold">Look &amp; feel inherited from Brand</h2>
+                    <span class="chip">Shared</span>
+                  </div>
+                  <p class="text-sm text-gray-600 mb-3">Logo, colors, typography, banner and card style come from your <span class="font-medium">Company &gt; Brand</span> settings. Change them there to keep your online menu, gift card page, receipts and emails consistent.</p>
 
-            <!-- ========== SECTION: Banner ========== -->
-            <section class="bg-white border border-gray-200 rounded-xl p-5 mb-4">
-              <h2 class="font-semibold mb-3">Banner</h2>
-              <div class="grid grid-cols-2 gap-3 mb-4">
-                <div class="toggle-card selected">
-                  <div class="radio-dot"></div>
-                  <span class="text-sm font-medium flex items-center gap-1.5">Image <span class="material-symbols-outlined" style="font-size: 16px">image</span></span>
-                </div>
-                <div class="toggle-card">
-                  <div class="radio-dot"></div>
-                  <span class="text-sm font-medium flex items-center gap-1.5">Background color <span class="material-symbols-outlined" style="font-size: 16px">palette</span></span>
-                </div>
-              </div>
-              <div class="flex gap-3">
-                <div class="flex-1 h-28 bg-gradient-to-br from-gray-200 to-gray-300 rounded-lg border border-gray-200 flex items-center justify-center text-gray-400 text-xs">
-                  [Banner image placeholder]
-                </div>
-                <div class="flex flex-col gap-2">
-                  <button class="bg-primary text-white px-4 py-2 rounded-lg text-sm font-medium flex items-center gap-1.5 hover:opacity-90">
-                    <span class="material-symbols-outlined" style="font-size: 16px">upload</span> Upload image
-                  </button>
-                  <button class="bg-white border border-gray-300 text-gray-700 px-4 py-2 rounded-lg text-sm font-medium flex items-center gap-1.5 hover:bg-gray-50">
-                    <span class="material-symbols-outlined" style="font-size: 16px">delete</span> Remove image
-                  </button>
-                </div>
-              </div>
-            </section>
+                  <!-- Brand preview tokens -->
+                  <div class="grid grid-cols-4 gap-3 mb-3">
+                    <div class="bg-white border border-gray-200 rounded-lg p-2">
+                      <p class="text-[10px] uppercase tracking-wide text-gray-400 mb-1">Logo</p>
+                      <div class="h-10 bg-gray-100 rounded flex items-center justify-center text-[10px] text-gray-400">[Logo]</div>
+                    </div>
+                    <div class="bg-white border border-gray-200 rounded-lg p-2">
+                      <p class="text-[10px] uppercase tracking-wide text-gray-400 mb-1">Colors</p>
+                      <div class="flex gap-1">
+                        <div class="h-10 flex-1 rounded" style="background:#2b4964"></div>
+                        <div class="h-10 flex-1 rounded" style="background:#f0d4c7"></div>
+                      </div>
+                    </div>
+                    <div class="bg-white border border-gray-200 rounded-lg p-2">
+                      <p class="text-[10px] uppercase tracking-wide text-gray-400 mb-1">Typography</p>
+                      <div class="h-10 flex items-center justify-center">
+                        <span class="text-sm font-semibold">Aa</span>
+                        <span class="text-sm text-gray-500 ml-1">Inter</span>
+                      </div>
+                    </div>
+                    <div class="bg-white border border-gray-200 rounded-lg p-2">
+                      <p class="text-[10px] uppercase tracking-wide text-gray-400 mb-1">Banner</p>
+                      <div class="h-10 rounded bg-gradient-to-br from-gray-200 to-gray-300"></div>
+                    </div>
+                  </div>
 
-            <!-- ========== SECTION: Logo ========== -->
-            <section class="bg-white border border-gray-200 rounded-xl p-5 mb-4">
-              <h2 class="font-semibold mb-3">Logo</h2>
-              <div class="flex gap-6 border-b border-gray-200 mb-3">
-                <button class="pb-2 border-b-2 border-primary text-primary text-sm font-medium">Light theme logo</button>
-                <button class="pb-2 text-gray-500 text-sm">Dark theme logo</button>
-              </div>
-              <div class="border border-gray-200 rounded-lg p-4 flex items-center justify-center h-24 mb-3">
-                <div class="w-20 h-20 bg-gray-100 rounded flex items-center justify-center text-gray-400 text-xs">[Logo]</div>
-              </div>
-              <div class="grid grid-cols-3 gap-2">
-                <button class="border border-gray-300 rounded-lg py-2 text-sm font-medium text-primary hover:bg-gray-50">Use Company logo</button>
-                <button class="border border-gray-300 rounded-lg py-2 text-sm flex items-center justify-center gap-1.5 hover:bg-gray-50">
-                  <span class="material-symbols-outlined" style="font-size: 16px">upload</span> Upload
-                </button>
-                <button class="border border-gray-300 rounded-lg py-2 text-sm flex items-center justify-center gap-1.5 hover:bg-gray-50">
-                  <span class="material-symbols-outlined" style="font-size: 16px">crop</span> Crop
-                </button>
-              </div>
-            </section>
-
-            <!-- ========== SECTION: Background ========== -->
-            <section class="bg-white border border-gray-200 rounded-xl p-5 mb-4">
-              <h2 class="font-semibold mb-3">Background</h2>
-              <div class="grid grid-cols-2 gap-3 mb-4">
-                <div class="toggle-card selected">
-                  <div class="radio-dot"></div>
-                  <span class="text-sm font-medium flex items-center gap-1.5">Background color <span class="material-symbols-outlined" style="font-size: 16px">palette</span></span>
+                  <div class="flex items-center gap-3">
+                    <a href="brand-wireframe.html" class="bg-primary text-white px-4 py-2 rounded-lg text-sm font-medium flex items-center gap-1.5 hover:opacity-90">
+                      <span class="material-symbols-outlined" style="font-size: 16px">tune</span> Manage Brand
+                    </a>
+                    <span class="text-xs text-gray-500">Last updated 2 days ago</span>
+                  </div>
                 </div>
-                <div class="toggle-card">
-                  <div class="radio-dot"></div>
-                  <span class="text-sm font-medium flex items-center gap-1.5">Image <span class="material-symbols-outlined" style="font-size: 16px">image</span></span>
-                </div>
-              </div>
-              <p class="text-xs text-gray-500 mb-2">Choose color</p>
-              <div class="grid grid-cols-8 gap-2">
-                <div class="color-swatch selected" style="background:#ffffff;border-color:#e5e7eb!important;"></div>
-                <div class="color-swatch" style="background:#f0d4c7"></div>
-                <div class="color-swatch" style="background:#f4cfd5"></div>
-                <div class="color-swatch" style="background:#d9d7ec"></div>
-                <div class="color-swatch" style="background:#d4e4ef"></div>
-                <div class="color-swatch" style="background:#dde7d7"></div>
-                <div class="color-swatch" style="background:#f4e9b8"></div>
-                <div class="color-swatch flex items-center justify-center" style="background:#f5f5f5">
-                  <span class="material-symbols-outlined text-gray-500" style="font-size: 18px">colorize</span>
-                </div>
-                <div class="color-swatch" style="background:#1f1f1f"></div>
-                <div class="color-swatch" style="background:#6b2020"></div>
-                <div class="color-swatch" style="background:#5d3a5a"></div>
-                <div class="color-swatch" style="background:#4a4a4a"></div>
-                <div class="color-swatch" style="background:#2b4964"></div>
-                <div class="color-swatch" style="background:#2d3f2a"></div>
-                <div class="color-swatch" style="background:#997a2b"></div>
-                <div class="color-swatch" style="background:#6b4a26"></div>
               </div>
             </section>
 
